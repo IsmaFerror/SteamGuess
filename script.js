@@ -533,6 +533,7 @@ const gameCatalog = [
     { id: 704850, name: "Thief Simulator", base: 1500 },
     { id: 641320, name: "Cooking Simulator", base: 1000 },
     { id: 448280, name: "Job Simulator", base: 800 },
+    { id: 3164500, name: "Schedule I", base: 60000 },
 
     // ACCIÓN, AVENTURA Y JUEGOS DE DISPAROS AAA
     { id: 870780, name: "Control Ultimate Edition", base: 3500 },
