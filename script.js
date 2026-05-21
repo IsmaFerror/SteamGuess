@@ -29,7 +29,6 @@ const gameCatalog = [
     { id: 582010, name: "Monster Hunter: World", base: 35000 },
     { id: 1593500, name: "God of War", base: 15000 },
     { id: 1817070, name: "Marvel's Spider-Man Remastered", base: 12000 },
-    { id: 814380, name: "Sekiro: Shadows Die Twice", base: 10000 },
     { id: 374320, name: "Dark Souls III", base: 12000 },
     { id: 1151640, name: "Horizon Zero Dawn", base: 8000 },
     { id: 1888930, name: "The Last of Us Part I", base: 5000 },
@@ -69,7 +68,6 @@ const gameCatalog = [
     { id: 550, name: "Left 4 Dead 2", base: 35000 },
     { id: 548430, name: "Deep Rock Galactic", base: 20000 },
     { id: 648800, name: "Raft", base: 18000 },
-    { id: 242760, name: "The Forest", base: 12000 },
     { id: 1326470, name: "Sons Of The Forest", base: 25000 },
     { id: 322330, name: "Don't Starve Together", base: 35000 },
 
@@ -100,7 +98,6 @@ const gameCatalog = [
     { id: 1364780, name: "Street Fighter 6", base: 25000 },
     { id: 1778820, name: "TEKKEN 8", base: 20000 },
     { id: 1971870, name: "Mortal Kombat 1", base: 5000 },
-    { id: 1687950, name: "Persona 5 Royal", base: 8000 },
     { id: 261550, name: "Mount & Blade II: Bannerlord", base: 18000 },
     { id: 393380, name: "Squad", base: 15000 },
     { id: 1144200, name: "Ready or Not", base: 12000 },
@@ -121,17 +118,16 @@ const gameCatalog = [
     
     // ROGUELIKES Y DECKBUILDERS
     { id: 1102190, name: "Monster Train", base: 1500 },
-    { id: 2557100, name: "Peglin", base: 2000 },
+    { id: 1296610, name: "Peglin", base: 2000 },
     { id: 1229240, name: "Chained Echoes", base: 800 },
     { id: 1150690, name: "OMORI", base: 2000 },
     { id: 1118200, name: "People Playground", base: 15000 },
     { id: 1782210, name: "Slime Rancher 2", base: 3000 },
     { id: 433340, name: "Slime Rancher", base: 4000 },
-    { id: 673610, name: "Brotato", base: 8000 },
+    { id: 1942280, name: "Brotato", base: 8000 },
     { id: 2066020, name: "Soulstone Survivors", base: 1500 },
     { id: 1621690, name: "Core Keeper", base: 4500 },
-    { id: 1172620, name: "Sea of Fools", base: 1000 }, // Fictional/Low filler
-    { id: 1942280, name: "Brotato", base: 10000 },
+    { id: 1172620, name: "Sea of Thieves", base: 1000 },
     { id: 1062090, name: "Timberborn", base: 4500 },
     
     // SIMULACIÓN Y GESTIÓN
@@ -152,7 +148,7 @@ const gameCatalog = [
     { id: 805550, name: "Assetto Corsa Competizione", base: 6000 },
     { id: 730390, name: "Rider's Republic", base: 2500 },
     { id: 1222680, name: "Need for Speed Heat", base: 4000 },
-    { id: 1888160, name: "Need for Speed Unbound", base: 5000 },
+    { id: 1846380, name: "Need for Speed Unbound", base: 5000 },
     
     // RPG, ESTRATEGIA Y GESTIÓN AAA
     { id: 236850, name: "Europa Universalis IV", base: 18000 },
@@ -174,7 +170,7 @@ const gameCatalog = [
     { id: 698780, name: "Doki Doki Literature Club Plus!", base: 1500 },
     { id: 933480, name: "Ender Lilies: Quietus of the Knights", base: 1000 },
     { id: 1113000, name: "Persona 4 Golden", base: 3000 },
-    { id: 1687950, name: "Persona 5 Royal", base: 12000 },
+    { id: 1687950, name: "Persona 5 Royal", base: 1000 },
     { id: 2161700, name: "Persona 3 Reload", base: 8000 },
     { id: 403640, name: "Dishonored 2", base: 1500 },
     { id: 205100, name: "Dishonored", base: 1200 },
@@ -197,8 +193,6 @@ const gameCatalog = [
     { id: 1056530, name: "Farming Simulator 22", base: 45000 },
     { id: 313160, name: "Farming Simulator 15", base: 1000 },
     { id: 252950, name: "Rocket League", base: 40000 }, // Ya no se vende en Steam pero sigue teniendo jugadores activos
-    { id: 289070, name: "Civilization VI", base: 55000 },
-    { id: 8930, name: "Civilization V", base: 18000 },
     { id: 435150, name: "Divinity: Original Sin 2", base: 12000 },
     { id: 203160, name: "Tomb Raider (2013)", base: 2500 },
     { id: 391220, name: "Rise of the Tomb Raider", base: 2000 },
@@ -226,7 +220,6 @@ const gameCatalog = [
     { id: 242760, name: "The Forest", base: 12000 },
     { id: 493520, name: "GTFO", base: 2000 },
     { id: 230270, name: "Alien: Isolation", base: 1500 },
-    { id: 271590, name: "GTA V", base: 150000 }, // Un recordatorio clásico de base alta
     
     // MMOs Y JUEGOS COMO SERVICIO (LIVE SERVICE)
     { id: 1063730, name: "New World", base: 15000 },
@@ -416,7 +409,6 @@ const gameCatalog = [
     { id: 1222140, name: "Detroit: Become Human", base: 6000 },
 
     // MUNDO ABIERTO, ACCIÓN Y SUPERVIVENCIA
-    { id: 1172620, name: "Sea of Thieves", base: 25000 },
     { id: 208650, name: "Batman: Arkham Knight", base: 8000 },
     { id: 1259420, name: "Days Gone", base: 9000 },
     { id: 1850570, name: "DEATH STRANDING DIRECTOR'S CUT", base: 6000 },
@@ -690,28 +682,33 @@ function getRandomGameBase() {
     return availableGames[Math.floor(Math.random() * availableGames.length)];
 }
 
-// Llenado de cola en paralelo agresivo
+// Llenado de cola SECUENCIAL para evitar bloqueos del proxy gratuito
 async function fillQueue() {
     if (isFillingQueue) return;
     isFillingQueue = true;
 
-    // Lanzamos las peticiones simultáneamente, no una por una
-    const fetchPromises = [];
-    while (gameQueue.length + fetchPromises.length < MAX_QUEUE_SIZE) {
+    // Ejecutamos el bucle hasta que tengamos los juegos necesarios
+    while (gameQueue.length < MAX_QUEUE_SIZE) {
         const nextBase = getRandomGameBase();
-        fetchPromises.push(fetchGameData(nextBase));
+        
+        try {
+            // AWAIT aquí asegura que la petición termine ANTES de lanzar la siguiente (Secuencial)
+            const data = await fetchGameData(nextBase);
+            gameQueue.push(data);
+            
+            // Le damos al proxy un "respiro" de 400ms entre cada petición
+            // Esto evita que AllOrigins nos bloquee por hacer Spam (Error 429)
+            await new Promise(resolve => setTimeout(resolve, 400));
+            
+        } catch (error) {
+            console.error("Error cargando carta en cola:", error);
+            // Si falla excepcionalmente, hacemos una pausa más larga antes de reintentar
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
     }
 
-    // A medida que terminan, se meten en la cola inmediatamente
-    for (const promise of fetchPromises) {
-        promise.then(data => gameQueue.push(data));
-    }
-
-    // Esperamos a que todas acaben para liberar el cerrojo
-    await Promise.all(fetchPromises);
     isFillingQueue = false;
 }
-
 // ARRANQUE EN FRÍO: Disparamos la descarga en el milisegundo 0 (fuera de funciones)
 fillQueue();
 
