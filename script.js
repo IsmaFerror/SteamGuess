@@ -617,39 +617,50 @@ const getSteamImageUrl = (appId) => `https://shared.cloudflare.steamstatic.com/s
 const showLoader = (side) => document.getElementById(`loader-${side}`).classList.remove('hidden');
 const hideLoader = (side) => document.getElementById(`loader-${side}`).classList.add('hidden');
 
-// OBTENCIÓN DE DATOS CON "TIMEOUTS ASESINOS"
+
 async function fetchGameData(gameBase) {
-    const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${gameBase.id}`;
+    // 1. Añadimos un timestamp para "engañar" al proxy y evitar que nos devuelva caché antigua
+    const timestamp = Date.now();
+    const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${gameBase.id}&t=${timestamp}`;
     const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(steamApiUrl)}`;
 
     let players = gameBase.base; // Asignamos el respaldo por defecto
 
     try {
-        // Control de tiempo: Si la API tarda más de 1.5s, cortamos la conexión
+        // 2. Aumentamos el timeout a 4000ms (4 segundos). 
+        // Como usas precarga en segundo plano, la red tiene tiempo para respirar sin penalizar la UI del usuario.
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 1500);
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
 
         const response = await fetch(proxyUrl, { signal: controller.signal });
-        clearTimeout(timeoutId); // Si llega rápido, cancelamos el corte
+        clearTimeout(timeoutId); // Si llega a tiempo, cancelamos la bomba lógica
 
         if (response.ok) {
             const steamData = await response.json();
-            if (steamData?.response?.player_count) {
+            
+            // 3. Validación estricta: Comprobamos que el objeto exista y que player_count no sea 'undefined'
+            // Esto soluciona el bug de los juegos que tienen legítimamente 0 jugadores concurrentes.
+            if (steamData?.response && typeof steamData.response.player_count !== 'undefined') {
                 players = steamData.response.player_count; // Datos 100% reales
+            } else {
+                throw new Error("El JSON de Steam no tiene el formato esperado");
             }
+        } else {
+            throw new Error(`HTTP Error Proxy: ${response.status}`);
         }
     } catch (error) {
-        // Si hay error o tardó demasiado, usamos el fallback con una pequeña variación aleatoria (-10% a +10%)
-        // Así los números no parecen congelados si el proxy se cae.
+        console.warn(`[Modo Fallback activado] Fallo al obtener datos reales de ${gameBase.name}: ${error.message}`);
+        
+        // Solo aplicamos la variación matemática si falló el fetch real
         players = Math.floor(players * (0.9 + Math.random() * 0.2));
     }
 
     const imageUrl = getSteamImageUrl(gameBase.id);
 
-    // Precarga de imagen con límite de 1 segundo. Si tarda más, se mostrará mientras el usuario juega, pero no bloquea la web.
+    // Precarga de imagen (Lógica intacta, funciona bien)
     await new Promise((resolve) => {
         const img = new Image();
-        const imgTimeout = setTimeout(resolve, 1000); // Forzar continuación al segundo
+        const imgTimeout = setTimeout(resolve, 1000);
         
         img.onload = () => { clearTimeout(imgTimeout); resolve(); };
         img.onerror = () => { clearTimeout(imgTimeout); resolve(); };
