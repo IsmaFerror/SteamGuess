@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ETIQUETAS SEO (Para que Google te encuentre) -->
+    <title>Steamdle - Which Steam game has more players?</title>
+    <meta name="description" content="Play Steamdle, the ultimate Higher or Lower game for Steam. Guess which game has more active players right now. Test your gaming knowledge!">
+    <meta name="keywords" content="steamdle, steam player count, higher or lower steam, steam games, active players, steam charts game">
+    <meta name="author" content="Tu Nombre o Nickname">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Motiva+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">STEAM<span>DLE</span></div>
+        
+        <button class="how-to-play-btn" onclick="openInstructions()">How to play</button>
+        
+        <div class="score-container">
+            <p>Score: <span id="current-score">0</span></p>
+            <p>High Score: <span id="high-score">0</span></p>
+        </div>
+    </header>
+
+    <main class="arena">
+        <!-- Left Game -->
+        <div class="card" id="card-left" onclick="makeGuess('left')">
+            <div class="loader-container" id="loader-left">
+                <div class="spinner"></div>
+            </div>
+            <div class="card-content">
+                <img id="img-left" src="" alt="Game 1">
+                <h2 id="title-left">Loading...</h2>
+                <div class="players-container hidden" id="players-left-container">
+                    <p class="players-count" id="players-left">0</p>
+                    <p class="players-label">Active players</p>
+                </div>
+            </div>
+            <div class="overlay" id="overlay-left"></div>
+        </div>
+
+        <!-- VS Circle -->
+        <div class="vs-circle">VS</div>
+
+        <!-- Right Game -->
+        <div class="card" id="card-right" onclick="makeGuess('right')">
+            <div class="loader-container" id="loader-right">
+                <div class="spinner"></div>
+            </div>
+            <div class="card-content">
+                <img id="img-right" src="" alt="Game 2">
+                <h2 id="title-right">Loading...</h2>
+                <div class="players-container hidden" id="players-right-container">
+                    <p class="players-count" id="players-right">0</p>
+                    <p class="players-label">Active players</p>
+                </div>
+            </div>
+            <div class="overlay" id="overlay-right"></div>
+        </div>
+    </main>
+
+    <!-- Instructions Modal -->
+    <div id="instructions-modal" class="modal hidden">
+        <div class="modal-content instructions-content">
+            <h2>How to play Steamdle</h2>
+            <ul class="rules-list">
+                <li>✦ <strong>The goal:</strong> Guess which game currently has <strong>more active players</strong> on Steam.</li>
+                <li>✦ <strong>First round:</strong> Guess blindly between the two initial options.</li>
+                <li>✦ <strong>Next rounds:</strong> The winning game stays as the base. You must guess if the new game has more or fewer players than the previous winner.</li>
+                <li>✦ <strong>One mistake:</strong> Your streak breaks and you start over.</li>
+            </ul>
+            <button onclick="closeInstructions()">Got it!</button>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="game-over-screen" class="modal hidden">
+        <div class="modal-content">
+            <h2>Game Over</h2>
+            <p>You achieved a streak of <span id="final-score" class="highlight">0</span>.</p>
+            <button onclick="startGame()">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

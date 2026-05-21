@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Motiva Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: #1b2838;
+    color: #c7d5e0;
+    overflow: hidden;
+}
+
+.top-bar {
+    background-color: #171a21;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #66c0f4;
+}
+
+.score-container {
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#current-score { color: #ffffff; }
+#high-score { color: #a3cf06; }
+
+.arena {
+    display: flex;
+    height: calc(100vh - 60px);
+    position: relative;
+}
+
+.card {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    background-color: #2a475e;
+    overflow: hidden;
+}
+
+.card-content {
+    text-align: center;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.card img {
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+    border: 2px solid #171a21;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.03);
+}
+
+h2 {
+    font-size: 28px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-top: 10px;
+}
+
+.players-container {
+    background-color: rgba(23, 26, 33, 0.85);
+    padding: 15px 30px;
+    border-radius: 8px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease;
+}
+
+.players-container.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.players-count {
+    font-size: 40px;
+    font-weight: bold;
+    color: #66c0f4;
+}
+
+.players-label {
+    font-size: 14px;
+    color: #8f98a0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 3;
+    transition: background-color 0.3s;
+    pointer-events: none; /* Para que el hover funcione sobre la carta */
+}
+
+.card:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.card.correct .overlay { background-color: rgba(163, 207, 6, 0.4); }
+.card.wrong .overlay { background-color: rgba(200, 50, 50, 0.6); }
+
+.vs-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: #171a21;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    border: 3px solid #66c0f4;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background-color: #1b2838;
+    padding: 50px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #2a475e;
+    box-shadow: 0 0 30px rgba(102, 192, 244, 0.2);
+}
+
+.modal-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.modal-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.highlight {
+    color: #66c0f4;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+button {
+    background: linear-gradient(to right, #47bfff 5%, #1a44c2 60%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: filter 0.2s;
+}
+
+button:hover {
+    filter: brightness(1.2);
+}
+
+/* ==================================
+   PANTALLAS DE CARGA (SPINNER STEAM)
+   ================================== */
+.loader-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2a475e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    transition: opacity 0.4s ease;
+}
+
+.loader-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(102, 192, 244, 0.2); /* Borde azul semitransparente */
+    border-top-color: #66c0f4; /* Azul brillante Steam */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==================================
+   NUEVOS ESTILOS: INSTRUCCIONES
+   ================================== */
+
+/* Botón de cómo jugar centrado y minimalista */
+.how-to-play-btn {
+    position: absolute; /* Lo fijamos al centro exacto */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Degradado sutil que se difumina a los lados */
+    background: linear-gradient(90deg, transparent 0%, rgba(102, 192, 244, 0.1) 50%, transparent 100%);
+    color: #8f98a0;
+    border: none;
+    padding: 8px 30px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.how-to-play-btn:hover {
+    color: #ffffff;
+    /* Al pasar el ratón el degradado brilla un poquito más */
+    background: linear-gradient(90deg, transparent 0%, rgba(102, 192, 244, 0.25) 50%, transparent 100%);
+}
+
+/* Ajustes para el modal de instrucciones (ESTO SE MANTIENE IGUAL) */
+.instructions-content {
+    max-width: 600px;
+    text-align: left;
+}
+
+.instructions-content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #66c0f4;
+}
+
+.rules-list {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.rules-list li {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #c7d5e0;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #66c0f4;
+}
+
+.rules-list li strong {
+    color: #fff;
+}
+
+.instructions-content button {
+    width: 100%;
+}
+
+/* ==================================
+   ESTILO ROJO PARA EL GAME OVER
+   ================================== */
+
+/* Cambia el color del texto "Game Over!" a rojo brillante */
+#game-over-screen h2 {
+    color: #ff4c4c;
+    text-shadow: 2px 2px 15px rgba(255, 76, 76, 0.3);
+}
+
+/* Cambia el borde y el resplandor de la caja a tonos rojizos (opcional, pero queda genial) */
+#game-over-screen .modal-content {
+    border: 1px solid #c83232;
+    box-shadow: 0 0 40px rgba(200, 50, 50, 0.25);
+}
+
+/* También podemos hacer que el botón de volver a jugar tenga un toque rojizo al pasar el ratón */
+#game-over-screen button:hover {
+    background: linear-gradient(to right, #ff4c4c 5%, #c83232 60%);
+    box-shadow: 0 0 15px rgba(255, 76, 76, 0.4);
+}
+
+/* ==================================
+   OPTIMIZACIÓN RESPONSIVA (MÓVILES)
+   ================================== */
+@media (max-width: 768px) {
+    
+    .top-bar {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+    }
+
+
+    .how-to-play-btn {
+        position: relative;
+        left: auto;
+        transform: none;
+        width: 100%;
+        padding: 10px;
+        background: rgba(102, 192, 244, 0.15); 
+    }
+
+
+    .score-container {
+        width: 100%;
+        justify-content: space-between;
+        font-size: 16px;
+    }
+
+    
+    .arena {
+        flex-direction: column;
+        height: calc(100vh - 120px); 
+    }
+
+    .card {
+        width: 100%;
+        height: 50%;
+    }
+
+
+    .card-content {
+        gap: 8px; 
+    }
+
+  
+    .card img {
+        width: auto;
+        height: 20vh; 
+        max-height: 180px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-top: 5px;
+    }
+
+    .players-container {
+        padding: 8px 20px;
+    }
+
+    .players-count {
+        font-size: 28px;
+    }
+
+    .players-label {
+        font-size: 11px;
+    }
+
+
+    .vs-circle {
+        top: calc(50% - 15px); 
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+        border-width: 2px;
+    }
+
+    
+    .modal-content {
+        padding: 30px 20px;
+        width: 90%;
+        max-height: 85vh;
+        overflow-y: auto; 
+    }
+
+    .modal-content h2 {
+        font-size: 26px;
+    }
+
+    .rules-list li {
+        font-size: 14px;
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .highlight {
+        font-size: 24px;
+    }
+
+
+    #card-left .card-content {
+        margin-bottom: 10px;
+    }
+
+
+    #card-right .card-content {
+        margin-top: 40px; 
+    }
+    
+
+    .card img {
+        height: 18vh;
+    }
+}
