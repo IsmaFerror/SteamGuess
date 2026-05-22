@@ -230,7 +230,6 @@ const gameCatalog = [
     { id: 976590, name: "Guilty Gear -Strive-", base: 4000 },
     { id: 1089090, name: "ONE PIECE Pirate Warriors 4", base: 1000 },
     { id: 851850, name: "DRAGON BALL Z: KAKAROT", base: 3000 },
-    { id: 1229230, name: "DRAGON BALL: Sparking! ZERO", base: 35000 },
     { id: 389730, name: "TEKKEN 7", base: 3000 },
     { id: 2222890, name: "Granblue Fantasy: Relink", base: 5000 },
     { id: 552990, name: "World of Warships", base: 8000 },
@@ -539,11 +538,12 @@ const hideLoader = (side) => document.getElementById(`loader-${side}`).classList
 
 
 // OBTENCIÓN DE DATOS CON SISTEMA MULTI-PROXY ANTI-BLOQUEOS
+// OBTENCIÓN DE DATOS Y PRECARGA DE IMÁGENES SEGURA
 async function fetchGameData(gameBase) {
     const timestamp = Date.now();
     const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${gameBase.id}&t=${timestamp}`;
     
-    // 1. ROTACIÓN DE PROXIES: Si uno nos bloquea (Error 429), saltamos instantáneamente al siguiente.
+    // Sistema Multi-Proxy para evitar baneos
     const proxies = [
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(steamApiUrl)}`,
         `https://corsproxy.io/?${encodeURIComponent(steamApiUrl)}`,
@@ -553,11 +553,9 @@ async function fetchGameData(gameBase) {
     let players = gameBase.base; 
     let fetchSuccess = false;
 
-    // 2. Bucle de rescate: Intentamos cada proxy uno por uno
     for (const proxyUrl of proxies) {
         try {
             const controller = new AbortController();
-            // 5 segundos de paciencia máxima por proxy
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
             const response = await fetch(proxyUrl, { signal: controller.signal });
@@ -565,42 +563,50 @@ async function fetchGameData(gameBase) {
 
             if (response.ok) {
                 const steamData = await response.json();
-                
-                // Validación estricta
                 if (steamData?.response && typeof steamData.response.player_count !== 'undefined') {
-                    players = steamData.response.player_count; // DATO 100% REAL DE STEAMDB
+                    players = steamData.response.player_count; 
                     fetchSuccess = true;
-                    break; // ¡Tuvimos éxito! Rompemos el bucle y dejamos de buscar proxies
+                    break;
                 }
             }
         } catch (error) {
-            // El proxy falló, el bucle ignora el error y pasa al siguiente proxy de la lista automáticamente.
-            console.warn(`[Aviso] Proxy bloqueado para ${gameBase.name}, cambiando a proxy de respaldo...`);
+            console.warn(`[Aviso] Proxy bloqueado, intentando con el siguiente...`);
         }
     }
 
-    // 3. Si por un milagro TODOS los proxies fallan o Steam se cae, usamos los datos base
     if (!fetchSuccess) {
-        console.error(`⚠️ [ALERTA] Todos los proxies fallaron para ${gameBase.name}. Usando fallback.`);
         players = Math.floor(players * (0.9 + Math.random() * 0.2));
     }
 
-    const imageUrl = getSteamImageUrl(gameBase.id);
+    // 🔴 SOLUCIÓN BUG DE CARÁTULAS: Sistema de Fallback de Imágenes
+    let finalImageUrl = getSteamImageUrl(gameBase.id);
 
-    // Precarga de imagen segura
     await new Promise((resolve) => {
         const img = new Image();
-        const imgTimeout = setTimeout(resolve, 1500); // Forzamos carga si tarda más de 1.5s
+        const imgTimeout = setTimeout(resolve, 2000); // 2 segundos máximo
         
-        img.onload = () => { clearTimeout(imgTimeout); resolve(); };
-        img.onerror = () => { clearTimeout(imgTimeout); resolve(); };
-        img.src = imageUrl;
+        img.onload = () => { 
+            clearTimeout(imgTimeout); 
+            resolve(); 
+        };
+        img.onerror = () => { 
+            // Si la portada vertical no existe, pedimos la horizontal (header) obligatoria de Steam
+            if (finalImageUrl.includes('library_600x900')) {
+                finalImageUrl = `https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/${gameBase.id}/header.jpg`;
+                img.src = finalImageUrl; // Disparamos la carga de nuevo
+            } else {
+                // Si todo falla, salimos para no colgar el juego
+                clearTimeout(imgTimeout); 
+                resolve(); 
+            }
+        };
+        img.src = finalImageUrl;
     });
 
     return {
         id: gameBase.id,
         title: gameBase.name,
-        image: imageUrl,
+        image: finalImageUrl, // IMPORTANTE: Devolvemos la imagen que sí funcionó
         players: players
     };
 }
@@ -725,11 +731,22 @@ async function makeGuess(sideClicked) {
 }
 
 async function nextRound(winnerGame) {
+    // 1. Ocultamos las cajas de jugadores MIENTRAS todavía tienen el texto viejo
+    document.getElementById('players-right-container').classList.add('hidden');
+    document.getElementById('players-left-container').classList.add('hidden');
+    
+    // 2. Limpiamos las clases verde/roja de ganar/perder
+    document.getElementById('card-left').className = 'card';
+    document.getElementById('card-right').className = 'card';
+
+    // 3. ESPERA CRÍTICA: Aguardamos 500ms para que el CSS termine la transición de opacidad.
+    // Esto asegura que la caja esté 100% invisible antes de cambiar los números.
+    await new Promise(r => setTimeout(r, 500));
+
+    // A partir de aquí la caja es invisible, procedemos con normalidad
     isFirstRound = false;
     currentGameLeft = winnerGame;
     
-    updateUI(); 
-
     if (gameQueue.length === 0) {
         showLoader('right');
         while (gameQueue.length === 0) {
@@ -741,6 +758,7 @@ async function nextRound(winnerGame) {
     currentGameRight = gameQueue.shift();
     fillQueue(); 
     
+    // updateUI inyectará los números del nuevo juego, pero de forma invisible.
     updateUI();
     isAnimating = false;
 }
