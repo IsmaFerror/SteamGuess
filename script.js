@@ -105,7 +105,7 @@ const gameCatalog = [
     { id: 1203620, name: "Enshrouded", base: 6500 },
     { id: 394360, name: "Hearts of Iron IV", base: 42000 },
     { id: 289070, name: "Sid Meier's Civilization VI", base: 18000 },
-    { id: 255710, name: "Cities: Skylines", base: 6500 },
+    { id: 255710, name: "Cities: Skylines", base: 4000 },
     { id: 227300, name: "Euro Truck Simulator 2", base: 22000 },
     { id: 281990, name: "Stellaris", base: 11500 },
     { id: 1158310, name: "Crusader Kings III", base: 10500 },
@@ -204,7 +204,7 @@ const gameCatalog = [
     // COOPERATIVOS, PUZZLES Y DIVERSOS
     { id: 582500, name: "We Were Here", base: 120 },
     { id: 865360, name: "We Were Here Too", base: 130 },
-    { id: 1436280, name: "Escape Simulator", base: 650 },
+    { id: 1435790, name: "Escape Simulator", base: 650 },
     { id: 70600, name: "Worms Reloaded", base: 80 },
     { id: 327890, name: "I Am Bread", base: 30 },
     { id: 233720, name: "Surgeon Simulator", base: 40 },
@@ -275,7 +275,7 @@ const gameCatalog = [
     { id: 1649240, name: "Returnal", base: 250 },
     { id: 1599660, name: "Sackboy: A Big Adventure", base: 80 },
     { id: 221100, name: "DayZ", base: 40000 },
-    { id: 2799860, name: "INAZUMA ELEVEN: Victory Road", base: 350 },
+    { id: 2799860, name: "INAZUMA ELEVEN: Victory Road", base: 600 },
 
     // CO-OP SHOOTERS Y HORDAS
     { id: 218620, name: "PAYDAY 2", base: 23500 },
@@ -363,7 +363,7 @@ const gameCatalog = [
     { id: 438740, name: "Friday the 13th: The Game", base: 15 },
     { id: 1568590, name: "Goose Goose Duck", base: 4000 },
     { id: 466240, name: "Deceit", base: 20 },
-    { id: 859570, name: "Secret Neighbor", base: 70 },
+    { id: 859570, name: "Secret Neighbor", base: 40 },
     { id: 975370, name: "Dwarf Fortress", base: 800 },
     { id: 629760, name: "MORDHAU", base: 530 },
     { id: 692850, name: "Bloodstained: Ritual of the Night", base: 170 },
@@ -457,7 +457,7 @@ const gameCatalog = [
     { id: 999220, name: "Amnesia: Rebirth", base: 45 },
     { id: 414700, name: "Outlast 2", base: 130 },
     { id: 480490, name: "Prey", base: 180 },
-    { id: 614570, name: "Dishonored: Death of the Outsider", base: 65 },
+    { id: 614570, name: "Dishonored: Death of the Outsider", base: 400 },
 
 
     // JRPGs Y JUEGOS CON ENFOQUE NARRATIVO
@@ -466,7 +466,7 @@ const gameCatalog = [
     { id: 1971650, name: "OCTOPATH TRAVELER II", base: 500 },
     { id: 1446650, name: "BRAVELY DEFAULT II", base: 55 },
     { id: 319630, name: "Life is Strange", base: 280 },
-    { id: 1190460, name: "Life is Strange: True Colors", base: 90 },
+    { id: 936790, name: "Life is Strange: True Colors", base: 70 },
     { id: 260230, name: "Valiant Hearts: The Great War", base: 45 },
     { id: 256290, name: "Child of Light", base: 25 },
     { id: 213670, name: "South Park: The Stick of Truth", base: 280 },
@@ -501,6 +501,7 @@ let currentGameLeft = null;
 let currentGameRight = null;
 let isAnimating = false;
 let isFirstRound = true;
+let playedGames = new Set();
 
 // SISTEMA DE PRECARGA OPTIMIZADA
 let gameQueue = [];
@@ -594,6 +595,7 @@ async function fetchGameData(gameBase) {
 }
 
 // MATCHMAKING AVANZADO: Basado en Distancia Logarítmica (K-Nearest Neighbors)
+// MATCHMAKING AVANZADO: Basado en Distancia Logarítmica (K-Nearest Neighbors)
 function getRandomGameBase() {
     // 1. Descartar los juegos que ya están en pantalla o en la cola
     const activeIds = [
@@ -602,10 +604,18 @@ function getRandomGameBase() {
         ...gameQueue.map(g => g.id)
     ].filter(id => id !== undefined);
 
-    let availableGames = gameCatalog.filter(g => !activeIds.includes(g.id));
+    // NUEVO: Filtramos los activos Y los que ya hemos jugado en esta sesión
+    let availableGames = gameCatalog.filter(g => 
+        !activeIds.includes(g.id) && !playedGames.has(g.id)
+    );
     
-    // Si milagrosamente nos quedamos sin juegos (muy raro), reiniciamos el catálogo disponible
-    if (availableGames.length === 0) availableGames = gameCatalog; 
+    // NUEVO: Si nos quedamos sin juegos (el jugador ha visto todo el catálogo),
+    // limpiamos el historial para que pueda seguir jugando sin que pete la web.
+    if (availableGames.length === 0) {
+        console.log("Catálogo agotado. Reiniciando historial de cartas...");
+        playedGames.clear();
+        availableGames = gameCatalog.filter(g => !activeIds.includes(g.id));
+    }
 
     // 2. Identificar la carta de referencia para buscarle un rival
     let referenceGame = null;
@@ -617,14 +627,15 @@ function getRandomGameBase() {
         referenceGame = currentGameLeft;
     }
 
+    let chosenGame;
+
     if (referenceGame) {
-        // Obtenemos los jugadores reales. 
-        // FIX: Si la API falló y devolvió 0 o null, usamos el 'base' del catálogo para no romper las matemáticas.
+        // Obtenemos los jugadores reales (o el base si la API falló)
         const targetPlayers = (referenceGame.players && referenceGame.players > 0) 
             ? referenceGame.players 
             : (gameCatalog.find(g => g.id === referenceGame.id)?.base || 1000);
 
-        // Calculamos el logaritmo del objetivo (Math.max evita logaritmos de 0 que dan -Infinity)
+        // Calculamos el logaritmo del objetivo
         const logTarget = Math.log10(Math.max(targetPlayers, 1));
 
         // 3. ORDENAR TODOS LOS JUEGOS POR SIMILITUD (Distancia Logarítmica)
@@ -635,44 +646,37 @@ function getRandomGameBase() {
             const distanceA = Math.abs(logTarget - logA);
             const distanceB = Math.abs(logTarget - logB);
             
-            return distanceA - distanceB; // De menor distancia (más parecido) a mayor
+            return distanceA - distanceB; 
         });
 
-        // 4. SISTEMA DE BUCKETS DINTÁMICOS (The Matchmaker)
-        // Como availableGames ya está ordenado del más difícil al más fácil, tomamos "trozos" del array.
+        // 4. SISTEMA DE BUCKETS DINÁMICOS (The Matchmaker)
         const randomRoll = Math.random();
         let selectedPool;
 
         if (randomRoll < 0.75) {
-            // 75% de las veces: "Duda Extrema" 
-            // Seleccionamos al azar uno de los 6 juegos MÁS PARECIDOS de todo el catálogo.
             selectedPool = availableGames.slice(0, 6);
-            
         } else if (randomRoll < 0.95) {
-            // 20% de las veces: "Progresión Moderada"
-            // Seleccionamos del top 6 al 15. Esto permite que los números suban o bajen poco a poco
-            // para no quedarse estancados eternamente en el mismo rango de cifras.
             selectedPool = availableGames.slice(6, 15);
-            
         } else {
-            // 5% de las veces: "Salto de Escala"
-            // Seleccionamos del top 15 al 30. Da un respiro al jugador con algo un poco más obvio,
-            // pero ESTÁ LIMITADO. Jamás usará juegos del puesto 100+ (evitando el 8000 vs 60).
             selectedPool = availableGames.slice(15, 30);
         }
 
-        // Failsafe: Si por algún motivo el pool seleccionado es más grande que los juegos que quedan,
-        // nos aseguramos de que no devuelva undefined.
+        // Failsafe por si el pool es mayor a los juegos restantes
         if (selectedPool.length === 0) {
             selectedPool = availableGames.slice(0, 3);
         }
 
-        // 5. Devolvemos un juego aleatorio dentro del rango de tensión elegido
-        return selectedPool[Math.floor(Math.random() * selectedPool.length)];
+        // 5. Devolvemos un juego aleatorio dentro del rango
+        chosenGame = selectedPool[Math.floor(Math.random() * selectedPool.length)];
+    } else {
+        // Si no hay juego de referencia, es aleatorio
+        chosenGame = availableGames[Math.floor(Math.random() * availableGames.length)];
     }
 
-    // Si no hay juego de referencia (la mismísima primera carta de la partida), es totalmente aleatorio
-    return availableGames[Math.floor(Math.random() * availableGames.length)];
+    // NUEVO: Marcamos este juego como usado para que no vuelva a salir
+    playedGames.add(chosenGame.id);
+
+    return chosenGame;
 }
 
 // Llenado de cola SECUENCIAL para evitar bloqueos del proxy gratuito
