@@ -5,20 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/FRX ico white.ico">
     
-    <!-- ETIQUETAS SEO (Para que Google te encuentre) -->
     <title>Steamdl - Which Steam game has more players?</title>
     <meta name="description" content="Play Steamdl, the ultimate Higher or Lower game for Steam. Guess which game has more active players right now. Test your gaming knowledge!">
     <meta name="keywords" content="steamdl, steam player count, higher or lower steam, steam games, active players, steam charts game">
-    <meta name="author" content="Tu Nombre o Nickname">
+    <meta name="author" content="Steamdl">
     
+    <link rel="canonical" href="https://steamdl.org/" />
+    
+    <meta property="og:title" content="Steamdl - Which Steam game has more players?" />
+    <meta property="og:description" content="Play Steamdl, the ultimate Higher or Lower game for Steam. Guess which game has more active players right now!" />
+    <meta property="og:url" content="https://steamdl.org/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://steamdl.org/FRX%20ico%20white.ico" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Steamdl - Which Steam game has more players?" />
+    <meta name="twitter:description" content="The ultimate Higher or Lower game for Steam." />
+
+    <link rel="preconnect" href="https://shared.cloudflare.steamstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Motiva+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Steamdl",
+      "url": "https://steamdl.org/",
+      "description": "The ultimate Higher or Lower game for Steam. Guess which game has more active players right now.",
+      "applicationCategory": "GameApplication",
+      "genre": "Trivia",
+      "operatingSystem": "Web browser"
+    }
+    </script>
 </head>
 <body>
     <header class="top-bar">
-        <div class="logo">STEAM<span>DL</span></div>
+        <h1 class="logo">STEAM<span>DL</span></h1>
         
-        <button class="how-to-play-btn" onclick="openInstructions()">How to play</button>
+        <button class="how-to-play-btn" onclick="openInstructions()" aria-label="Open instructions on how to play">How to play</button>
         
         <div class="score-container">
             <p>Score: <span id="current-score">0</span></p>
@@ -27,46 +55,42 @@
     </header>
 
     <main class="arena">
-        <!-- Left Game -->
-        <div class="card" id="card-left" onclick="makeGuess('left')">
+        <div class="card" id="card-left" onclick="makeGuess('left')" tabindex="0" aria-label="Select left game">
             <div class="loader-container" id="loader-left">
                 <div class="spinner"></div>
             </div>
             <div class="card-content">
-                <img id="img-left" src="" alt="Game 1">
+                <img id="img-left" src="" alt="Game cover image loading">
                 <h2 id="title-left">Loading...</h2>
                 <div class="players-container hidden" id="players-left-container">
                     <p class="players-count" id="players-left">0</p>
-                    <p class="players-label">Active players</p>
+                    <p class="players-label">Active Steam players</p>
                 </div>
             </div>
             <div class="overlay" id="overlay-left"></div>
         </div>
 
-        <!-- VS Circle -->
-        <div class="vs-circle">VS</div>
+        <div class="vs-circle" aria-hidden="true">VS</div>
 
-        <!-- Right Game -->
-        <div class="card" id="card-right" onclick="makeGuess('right')">
+        <div class="card" id="card-right" onclick="makeGuess('right')" tabindex="0" aria-label="Select right game">
             <div class="loader-container" id="loader-right">
                 <div class="spinner"></div>
             </div>
             <div class="card-content">
-                <img id="img-right" src="" alt="Game 2">
+                <img id="img-right" src="" alt="Game cover image loading">
                 <h2 id="title-right">Loading...</h2>
                 <div class="players-container hidden" id="players-right-container">
                     <p class="players-count" id="players-right">0</p>
-                    <p class="players-label">Active players</p>
+                    <p class="players-label">Active Steam players</p>
                 </div>
             </div>
             <div class="overlay" id="overlay-right"></div>
         </div>
     </main>
 
-    <!-- Instructions Modal -->
-    <div id="instructions-modal" class="modal hidden">
+    <div id="instructions-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content instructions-content">
-            <h2>How to play Steamdl</h2>
+            <h2 id="modal-title">How to play Steamdl</h2>
             <ul class="rules-list">
                 <li>✦ <strong>The goal:</strong> Guess which game currently has <strong>more active players</strong> on Steam.</li>
                 <li>✦ <strong>First round:</strong> Guess blindly between the two initial options.</li>
@@ -77,8 +101,7 @@
         </div>
     </div>
 
-    <!-- Game Over Screen -->
-    <div id="game-over-screen" class="modal hidden">
+    <div id="game-over-screen" class="modal hidden" role="dialog" aria-modal="true">
         <div class="modal-content">
             <h2>Game Over</h2>
             <p>You achieved a streak of <span id="final-score" class="highlight">0</span>.</p>
@@ -86,6 +109,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

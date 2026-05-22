@@ -731,10 +731,18 @@ async function startGame() {
 function updateUI() {
     document.getElementById('title-left').innerText = currentGameLeft.title;
     document.getElementById('img-left').src = currentGameLeft.image;
+    
+    // SEO: Asignar ALT dinámico para SEO de imágenes y accesibilidad.
+    document.getElementById('img-left').alt = `Cover art for ${currentGameLeft.title}`; 
+    
     document.getElementById('players-left').innerText = formatNumber(currentGameLeft.players);
     
     document.getElementById('title-right').innerText = currentGameRight.title;
     document.getElementById('img-right').src = currentGameRight.image;
+    
+    // SEO: Asignar ALT dinámico
+    document.getElementById('img-right').alt = `Cover art for ${currentGameRight.title}`; 
+
     document.getElementById('players-right').innerText = formatNumber(currentGameRight.players);
 
     document.getElementById('card-left').className = 'card';
