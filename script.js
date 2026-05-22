@@ -355,7 +355,6 @@ const gameCatalog = [
     { id: 1121560, name: "Atelier Ryza: Ever Darkness", base: 1500 },
     { id: 359870, name: "FINAL FANTASY X/X-2 HD Remaster", base: 2000 },
     { id: 613830, name: "CHRONO TRIGGER", base: 1500 },
-    { id: 1089090, name: "ONE PIECE: PIRATE WARRIORS 4", base: 1500 },
 
     // UNIVERSO STAR WARS Y OTROS
     { id: 1774580, name: "STAR WARS Jedi: Survivor", base: 6000 },
