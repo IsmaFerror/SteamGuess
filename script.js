@@ -1,187 +1,210 @@
 // Catálogo base con "Datos de Respaldo" (Fallback).
 // Si la conexión a la API falla o tarda más de 1.5s, usaremos este número base.
 const gameCatalog = [
+
     // TITANES Y ESPORTS
-    { id: 730, name: "Counter-Strike 2", base: 1100000 },
-    { id: 570, name: "Dota 2", base: 650000 },
-    { id: 578080, name: "PUBG: BATTLEGROUNDS", base: 500000 },
-    { id: 1172470, name: "Apex Legends", base: 250000 },
-    { id: 271590, name: "Grand Theft Auto V", base: 140000 },
-    { id: 252490, name: "Rust", base: 110000 },
-    { id: 440, name: "Team Fortress 2", base: 85000 },
-    { id: 359550, name: "Rainbow Six Siege", base: 75000 },
-    { id: 230410, name: "Warframe", base: 60000 },
-    { id: 381210, name: "Dead by Daylight", base: 50000 },
-    { id: 236390, name: "War Thunder", base: 80000 },
-    { id: 1085660, name: "Destiny 2", base: 70000 },
-    { id: 553850, name: "Helldivers 2", base: 150000 },
+    { id: 730, name: "Counter-Strike 2", base: 650000 },
+    { id: 570, name: "Dota 2", base: 350000 },
+    { id: 16900, name: "PUBG: BATTLEGROUNDS", base: 180000 },
+    { id: 1172470, name: "Apex Legends", base: 120000 },
+    { id: 271590, name: "Grand Theft Auto V", base: 90000 },
+    { id: 252490, name: "Rust", base: 65000 },
+    { id: 440, name: "Team Fortress 2", base: 45000 },
+    { id: 359550, name: "Rainbow Six Siege", base: 55000 },
+    { id: 230410, name: "Warframe", base: 35000 },
+    { id: 381210, name: "Dead by Daylight", base: 28000 },
+    { id: 236390, name: "War Thunder", base: 45000 },
+    { id: 1085660, name: "Destiny 2", base: 55000 },
+    { id: 553850, name: "Helldivers 2", base: 45000 },
+    { id: 1790600, name: "DRAGON BALL: Sparking! ZERO", base: 45000 },
+    { id: 349040, name: "NARUTO SHIPPUDEN: Ultimate Ninja STORM 4", base: 45000 },
     
     // AAA y MUNDOS ABIERTOS
-    { id: 1091500, name: "Cyberpunk 2077", base: 70000 },
-    { id: 292030, name: "The Witcher 3: Wild Hunt", base: 40000 },
-    { id: 1245620, name: "Elden Ring", base: 90000 },
-    { id: 1086940, name: "Baldur's Gate 3", base: 120000 },
-    { id: 1174180, name: "Red Dead Redemption 2", base: 45000 },
-    { id: 489830, name: "The Elder Scrolls V: Skyrim SE", base: 30000 },
-    { id: 377160, name: "Fallout 4", base: 25000 },
-    { id: 990080, name: "Hogwarts Legacy", base: 15000 },
-    { id: 1716740, name: "Starfield", base: 10000 },
-    { id: 582010, name: "Monster Hunter: World", base: 35000 },
-    { id: 1593500, name: "God of War", base: 15000 },
-    { id: 1817070, name: "Marvel's Spider-Man Remastered", base: 12000 },
-    { id: 374320, name: "Dark Souls III", base: 12000 },
-    { id: 1151640, name: "Horizon Zero Dawn", base: 8000 },
-    { id: 1888930, name: "The Last of Us Part I", base: 5000 },
-    { id: 2050650, name: "Resident Evil 4 Remake", base: 15000 },
-    { id: 1196590, name: "Resident Evil Village", base: 10000 },
-    { id: 1659040, name: "HITMAN 3", base: 8000 },
+    { id: 1091500, name: "Cyberpunk 2077", base: 35000 },
+    { id: 292030, name: "The Witcher 3: Wild Hunt", base: 22000 },
+    { id: 1245620, name: "Elden Ring", base: 45000 },
+    { id: 1086940, name: "Baldur's Gate 3", base: 45000 },
+    { id: 1174180, name: "Red Dead Redemption 2", base: 28000 },
+    { id: 489830, name: "The Elder Scrolls V: Skyrim SE", base: 18000 },
+    { id: 377160, name: "Fallout 4", base: 1000 },
+    { id: 22370, name: "Fallout 3", base: 200 },
+    { id: 588430, name: "Fallout Shelter", base: 1000 },
+
+    { id: 990080, name: "Hogwarts Legacy", base: 12000 },
+    { id: 1716740, name: "Starfield", base: 8000 },
+    { id: 582010, name: "Monster Hunter: World", base: 5000 },
+    { id: 1446780, name: "MONSTER HUNTER RISE", base: 2500 },
+    { id: 2246340, name: "Monster Hunter Wilds", base: 5000 },
+    { id: 2852190, name: "Monster Hunter Stories 3: Twisted Reflection", base: 600 },
+    { id: 1593500, name: "God of War", base: 10000 },
+    { id: 1817070, name: "Marvel's Spider-Man Remastered", base: 8000 },
+    { id: 374320, name: "Dark Souls III", base: 8000 },
+    { id: 570940, name: "DARK SOULS™: REMASTERED", base: 8000 },
+    { id: 335300, name: "DARK SOULS™ II: Scholar of the First Sin", base: 8000 },
+    { id: 1151640, name: "Horizon Zero Dawn", base: 6000 },
+    { id: 1888930, name: "The Last of Us Part I", base: 4000 },
+    { id: 2050650, name: "Resident Evil 4 Remake", base: 8000 },
+    { id: 1196590, name: "Resident Evil Village", base: 6000 },
+    { id: 3764200, name: "Resident Evil Requiem", base: 5000 },
+    { id: 418370, name: "Resident Evil 7 Biohazard", base: 5000 },
+    { id: 883710, name: "Resident Evil 2", base: 5000 },
+    { id: 952060, name: "Resident Evil 3", base: 5000 },
+
+    { id: 1659040, name: "HITMAN 3", base: 5000 },
 
     // INDIES DE ORO (Aclamados)
-    { id: 413150, name: "Stardew Valley", base: 85000 },
-    { id: 105600, name: "Terraria", base: 45000 },
-    { id: 367520, name: "Hollow Knight", base: 20000 },
-    { id: 1145360, name: "Hades", base: 15000 },
-    { id: 504230, name: "Celeste", base: 5000 },
-    { id: 588650, name: "Dead Cells", base: 10000 },
-    { id: 774361, name: "Blasphemous", base: 3000 },
+    { id: 413150, name: "Stardew Valley", base: 28000 },
+    { id: 105600, name: "Terraria", base: 18000 },
+    { id: 367520, name: "Hollow Knight", base: 8000 },
+    { id: 1145360, name: "Hades", base: 7000 },
+    { id: 504230, name: "Celeste", base: 3000 },
+    { id: 588650, name: "Dead Cells", base: 5000 },
+    { id: 774361, name: "Blasphemous", base: 2500 },
     { id: 2114740, name: "Blasphemous 2", base: 2000 },
-    { id: 250900, name: "The Binding of Isaac: Rebirth", base: 25000 },
-    { id: 646570, name: "Slay the Spire", base: 15000 },
+    { id: 250900, name: "The Binding of Isaac: Rebirth", base: 12000 },
+    { id: 646570, name: "Slay the Spire", base: 8000 },
+    { id: 2868840, name: "Slay the Spire 2", base: 8000 },
     { id: 391540, name: "Undertale", base: 4000 },
-    { id: 268910, name: "Cuphead", base: 6000 },
-    { id: 1794680, name: "Vampire Survivors", base: 15000 },
-    { id: 2379780, name: "Balatro", base: 25000 },
-    { id: 1868140, name: "Dave the Diver", base: 12000 },
-    { id: 1562430, name: "DREDGE", base: 4000 },
-    { id: 1092790, name: "Inscryption", base: 5000 },
-    { id: 2832860, name: "Buckshot Roulette", base: 8000 },
+    { id: 268910, name: "Cuphead", base: 4000 },
+    { id: 1794680, name: "Vampire Survivors", base: 12000 },
+    { id: 2379780, name: "Balatro", base: 15000 },
+    { id: 1868140, name: "Dave the Diver", base: 8000 },
+    { id: 1562430, name: "DREDGE", base: 3000 },
+    { id: 1092790, name: "Inscryption", base: 3000 },
+    { id: 2835570, name: "Buckshot Roulette", base: 6000 },
     { id: 753640, name: "Outer Wilds", base: 3000 },
-    { id: 632470, name: "Disco Elysium", base: 4000 },
+    { id: 632470, name: "Disco Elysium", base: 3000 },
+    { id: 1422450, name: "Deadlock", base: 3000 },
+    { id: 3527290, name: "PEAK", base: 3000 },
 
     // COOPERATIVOS / VIRALES
-    { id: 1966720, name: "Lethal Company", base: 45000 },
-    { id: 739630, name: "Phasmophobia", base: 25000 },
-    { id: 945360, name: "Among Us", base: 12000 },
-    { id: 1097150, name: "Fall Guys", base: 15000 },
-    { id: 2881650, name: "Content Warning", base: 20000 },
-    { id: 1623730, name: "Palworld", base: 90000 },
-    { id: 550, name: "Left 4 Dead 2", base: 35000 },
-    { id: 548430, name: "Deep Rock Galactic", base: 20000 },
-    { id: 648800, name: "Raft", base: 18000 },
-    { id: 1326470, name: "Sons Of The Forest", base: 25000 },
-    { id: 322330, name: "Don't Starve Together", base: 35000 },
+    { id: 1966720, name: "Lethal Company", base: 25000 },
+    { id: 739630, name: "Phasmophobia", base: 8000 },
+    { id: 945360, name: "Among Us", base: 5000 },
+    { id: 1097150, name: "Fall Guys", base: 8000 },
+    { id: 2881650, name: "Content Warning", base: 12000 },
+    { id: 1623730, name: "Palworld", base: 45000 },
+    { id: 550, name: "Left 4 Dead 2", base: 12000 },
+    { id: 548430, name: "Deep Rock Galactic", base: 12000 },
+    { id: 648800, name: "Raft", base: 8000 },
+    { id: 1326470, name: "Sons Of The Forest", base: 12000 },
+    { id: 322330, name: "Don't Starve Together", base: 15000 },
 
     // SURVIVAL / SANDBOX / SIMULACIÓN
-    { id: 4000, name: "Garry's Mod", base: 30000 },
-    { id: 892970, name: "Valheim", base: 25000 },
-    { id: 346110, name: "ARK: Survival Evolved", base: 35000 },
-    { id: 264710, name: "Subnautica", base: 10000 },
-    { id: 221100, name: "DayZ", base: 45000 },
-    { id: 108600, name: "Project Zomboid", base: 35000 },
-    { id: 251570, name: "7 Days to Die", base: 40000 },
-    { id: 294100, name: "RimWorld", base: 25000 },
-    { id: 427520, name: "Factorio", base: 20000 },
-    { id: 233860, name: "Kenshi", base: 8000 },
-    { id: 1203620, name: "Enshrouded", base: 15000 },
-    { id: 394360, name: "Hearts of Iron IV", base: 40000 },
-    { id: 289070, name: "Sid Meier's Civilization VI", base: 50000 },
-    { id: 255710, name: "Cities: Skylines", base: 15000 },
-    { id: 227300, name: "Euro Truck Simulator 2", base: 45000 },
-    { id: 281990, name: "Stellaris", base: 20000 },
-    { id: 1158310, name: "Crusader Kings III", base: 25000 },
-    { id: 960090, name: "Bloons TD 6", base: 35000 },
-    { id: 1454400, name: "Cookie Clicker", base: 15000 },
-    { id: 275850, name: "No Man's Sky", base: 18000 },
-    { id: 284160, name: "BeamNG.drive", base: 20000 },
+    { id: 4000, name: "Garry's Mod", base: 18000 },
+    { id: 892970, name: "Valheim", base: 12000 },
+    { id: 346110, name: "ARK: Survival Evolved", base: 15000 },
+    { id: 264710, name: "Subnautica", base: 8000 },
+    { id: 848450, name: "Subnautica: Below Zero ", base: 8000 },
+    { id: 1962700, name: "Subnautica 2", base: 8000 },
+
+    { id: 221100, name: "DayZ", base: 18000 },
+    { id: 108600, name: "Project Zomboid", base: 18000 },
+    { id: 251570, name: "7 Days to Die", base: 12000 },
+    { id: 294100, name: "RimWorld", base: 12000 },
+    { id: 427520, name: "Factorio", base: 10000 },
+    { id: 233860, name: "Kenshi", base: 4000 },
+    { id: 1203620, name: "Enshrouded", base: 8000 },
+    { id: 394360, name: "Hearts of Iron IV", base: 18000 },
+    { id: 289070, name: "Sid Meier's Civilization VI", base: 22000 },
+    { id: 255710, name: "Cities: Skylines", base: 8000 },
+    { id: 227300, name: "Euro Truck Simulator 2", base: 18000 },
+    { id: 281990, name: "Stellaris", base: 12000 },
+    { id: 1158310, name: "Crusader Kings III", base: 12000 },
+    { id: 960090, name: "Bloons TD 6", base: 18000 },
+    { id: 1454400, name: "Cookie Clicker", base: 8000 },
+    { id: 275850, name: "No Man's Sky", base: 12000 },
+    { id: 284160, name: "BeamNG.drive", base: 12000 },
     
     // PELEA, TÁCTICO Y VARIOS
-    { id: 1364780, name: "Street Fighter 6", base: 25000 },
-    { id: 1778820, name: "TEKKEN 8", base: 20000 },
-    { id: 1971870, name: "Mortal Kombat 1", base: 5000 },
-    { id: 261550, name: "Mount & Blade II: Bannerlord", base: 18000 },
-    { id: 393380, name: "Squad", base: 15000 },
-    { id: 1144200, name: "Ready or Not", base: 12000 },
-    { id: 686810, name: "Hell Let Loose", base: 12000 },
-    { id: 594650, name: "Hunt: Showdown", base: 25000 },
-    { id: 620980, name: "Beat Saber", base: 5000 },
+    { id: 1364780, name: "Street Fighter 6", base: 8000 },
+    { id: 1778820, name: "TEKKEN 8", base: 8000 },
+    { id: 1971870, name: "Mortal Kombat 1", base: 4000 },
+    { id: 261550, name: "Mount & Blade II: Bannerlord", base: 8000 },
+    { id: 393380, name: "Squad", base: 8000 },
+    { id: 1144200, name: "Ready or Not", base: 7000 },
+    { id: 686810, name: "Hell Let Loose", base: 6000 },
+    { id: 594650, name: "Hunt: Showdown", base: 8000 },
+    { id: 620980, name: "Beat Saber", base: 4000 },
     { id: 546560, name: "Half-Life: Alyx", base: 2000 },
-    { id: 700330, name: "SCP: Secret Laboratory", base: 15000 },
+    { id: 700330, name: "SCP: Secret Laboratory", base: 8000 },
 
     // CLÁSICOS DE VALVE Y NOSTALGIA
-    { id: 220, name: "Half-Life 2", base: 3500 },
-    { id: 70, name: "Half-Life", base: 1200 },
-    { id: 400, name: "Portal", base: 2500 },
-    { id: 620, name: "Portal 2", base: 6000 },
-    { id: 500, name: "Left 4 Dead", base: 1000 },
-    { id: 10, name: "Counter-Strike (1.6)", base: 8000 },
-    { id: 240, name: "Counter-Strike: Source", base: 4500 },
+    { id: 220, name: "Half-Life 2", base: 2500 },
+    { id: 70, name: "Half-Life", base: 1000 },
+    { id: 400, name: "Portal", base: 2000 },
+    { id: 620, name: "Portal 2", base: 4000 },
+    { id: 500, name: "Left 4 Dead", base: 800 },
+    { id: 10, name: "Counter-Strike (1.6)", base: 4000 },
+    { id: 240, name: "Counter-Strike: Source", base: 2500 },
     
     // ROGUELIKES Y DECKBUILDERS
-    { id: 1102190, name: "Monster Train", base: 1500 },
+    { id: 1102190, name: "Monster Train", base: 1000 },
     { id: 1296610, name: "Peglin", base: 2000 },
     { id: 1229240, name: "Chained Echoes", base: 800 },
-    { id: 1150690, name: "OMORI", base: 2000 },
-    { id: 1118200, name: "People Playground", base: 15000 },
+    { id: 1150690, name: "OMORI", base: 1500 },
+    { id: 1118200, name: "People Playground", base: 8000 },
     { id: 1782210, name: "Slime Rancher 2", base: 3000 },
-    { id: 433340, name: "Slime Rancher", base: 4000 },
+    { id: 433340, name: "Slime Rancher", base: 3000 },
     { id: 1942280, name: "Brotato", base: 8000 },
     { id: 2066020, name: "Soulstone Survivors", base: 1500 },
-    { id: 1621690, name: "Core Keeper", base: 4500 },
-    { id: 1172620, name: "Sea of Thieves", base: 1000 },
-    { id: 1062090, name: "Timberborn", base: 4500 },
+    { id: 1621690, name: "Core Keeper", base: 4000 },
+    { id: 1172620, name: "Sea of Thieves", base: 6000 },
+    { id: 1062090, name: "Timberborn", base: 3500 },
     
     // SIMULACIÓN Y GESTIÓN
-    { id: 1129580, name: "Dyson Sphere Program", base: 5000 },
-    { id: 15560, name: "AaaaaAAaaaAAAaaAAAAaAAAAA!!! for the Awesome", base: 100 }, // El nombre siempre hace gracia
-    { id: 383120, name: "Empyrion - Galactic Survival", base: 2500 },
-    { id: 242920, name: "Banished", base: 3500 },
-    { id: 248390, name: "Craft The World", base: 1500 },
+    { id: 1129580, name: "Dyson Sphere Program", base: 4000 },
+    { id: 15560, name: "AaaaaAAaaaAAAaaAAAAaAAAAA!!! for the Awesome", base: 100 },
+    { id: 383120, name: "Empyrion - Galactic Survival", base: 2000 },
+    { id: 242920, name: "Banished", base: 2000 },
+    { id: 248390, name: "Craft The World", base: 1000 },
     { id: 671440, name: "Rise of Industry", base: 800 },
-    { id: 647960, name: "Foundation", base: 2000 },
-    { id: 453090, name: "Parkitect", base: 1200 },
-    { id: 703080, name: "Planet Zoo", base: 7000 },
-    { id: 493340, name: "Planet Coaster", base: 3500 },
-    { id: 228380, name: "Wreckfest", base: 4000 },
+    { id: 647960, name: "Foundation", base: 1500 },
+    { id: 453090, name: "Parkitect", base: 1000 },
+    { id: 703080, name: "Planet Zoo", base: 5000 },
+    { id: 493340, name: "Planet Coaster", base: 3000 },
+    { id: 228380, name: "Wreckfest", base: 2500 },
     { id: 310560, name: "DiRT Rally", base: 800 },
-    { id: 690790, name: "DiRT Rally 2.0", base: 3000 },
-    { id: 244210, name: "Assetto Corsa", base: 15000 },
-    { id: 805550, name: "Assetto Corsa Competizione", base: 6000 },
-    { id: 730390, name: "Rider's Republic", base: 2500 },
-    { id: 1222680, name: "Need for Speed Heat", base: 4000 },
-    { id: 1846380, name: "Need for Speed Unbound", base: 5000 },
+    { id: 690790, name: "DiRT Rally 2.0", base: 2000 },
+    { id: 244210, name: "Assetto Corsa", base: 8000 },
+    { id: 805550, name: "Assetto Corsa Competizione", base: 4000 },
+    { id: 730390, name: "Rider's Republic", base: 2000 },
+    { id: 1222680, name: "Need for Speed Heat", base: 3000 },
+    { id: 1846380, name: "Need for Speed Unbound", base: 3500 },
     
     // RPG, ESTRATEGIA Y GESTIÓN AAA
-    { id: 236850, name: "Europa Universalis IV", base: 18000 },
-    { id: 323190, name: "Frostpunk", base: 6000 },
-    { id: 2855140, name: "Frostpunk 2", base: 25000 }, // Lanzamiento reciente
-    { id: 480650, name: "DOOM", base: 3000 },
+    { id: 236850, name: "Europa Universalis IV", base: 12000 },
+    { id: 323190, name: "Frostpunk", base: 5000 },
+    { id: 1601580, name: "Frostpunk 2", base: 15000 },
+    { id: 379720, name: "DOOM", base: 3000 },
     { id: 782330, name: "DOOM Eternal", base: 4500 },
-    { id: 1142710, name: "Total War: WARHAMMER III", base: 25000 },
+    { id: 3017860, name: "DOOM: The Dark Ages", base: 4500 },
+    { id: 1142710, name: "Total War: WARHAMMER III", base: 18000 },
     { id: 594570, name: "Total War: WARHAMMER II", base: 8000 },
-    { id: 321360, name: "Total War: ROME II - Emperor Edition", base: 6000 },
-    { id: 262060, name: "Darkest Dungeon", base: 4500 },
+    { id: 321360, name: "Total War: ROME II - Emperor Edition", base: 5000 },
+    { id: 262060, name: "Darkest Dungeon", base: 4000 },
     { id: 1940340, name: "Darkest Dungeon II", base: 2500 },
-    { id: 814380, name: "Sekiro: Shadows Die Twice", base: 8000 },
-    { id: 1286680, name: "Tiny Tina's Wonderlands", base: 1500 },
+    { id: 814380, name: "Sekiro: Shadows Die Twice", base: 6000 },
+    { id: 1286680, name: "Tiny Tina's Wonderlands", base: 2000 },
     { id: 49520, name: "Borderlands 2", base: 6000 },
-    { id: 397540, name: "Borderlands 3", base: 8000 },
+    { id: 397540, name: "Borderlands 3", base: 6000 },
     
     // MISTERIO, NARRATIVA Y NOVELAS VISUALES
     { id: 698780, name: "Doki Doki Literature Club Plus!", base: 1500 },
     { id: 933480, name: "Ender Lilies: Quietus of the Knights", base: 1000 },
     { id: 1113000, name: "Persona 4 Golden", base: 3000 },
-    { id: 1687950, name: "Persona 5 Royal", base: 1000 },
-    { id: 2161700, name: "Persona 3 Reload", base: 8000 },
+    { id: 1687950, name: "Persona 5 Royal", base: 5000 },
+    { id: 2161700, name: "Persona 3 Reload", base: 6000 },
     { id: 403640, name: "Dishonored 2", base: 1500 },
     { id: 205100, name: "Dishonored", base: 1200 },
-    { id: 8870, name: "BioShock Infinite", base: 1500 },
+    { id: 8870, name: "BioShock Infinite", base: 2000 },
     { id: 409710, name: "BioShock Remastered", base: 1000 },
     { id: 2620, name: "Call of Duty: Black Ops", base: 800 },
     { id: 202970, name: "Call of Duty: Black Ops II", base: 1500 },
-    { id: 311210, name: "Call of Duty: Black Ops III", base: 4500 },
+    { id: 311210, name: "Call of Duty: Black Ops III", base: 3000 },
     
     // COOPERATIVOS, PUZZLES Y DIVERSOS
-    { id: 582500, name: "We Were Here", base: 1200 },
+    { id: 582500, name: "We Were Here", base: 1000 },
     { id: 865360, name: "We Were Here Too", base: 500 },
     { id: 1436280, name: "Escape Simulator", base: 1500 },
     { id: 70600, name: "Worms Reloaded", base: 400 },
@@ -189,190 +212,75 @@ const gameCatalog = [
     { id: 233720, name: "Surgeon Simulator", base: 200 },
     { id: 322520, name: "SUPERHOT", base: 800 },
     { id: 617830, name: "SUPERHOT VR", base: 500 },
-    { id: 681280, name: "Descenders", base: 1800 },
-    { id: 1056530, name: "Farming Simulator 22", base: 45000 },
-    { id: 313160, name: "Farming Simulator 15", base: 1000 },
-    { id: 252950, name: "Rocket League", base: 40000 }, // Ya no se vende en Steam pero sigue teniendo jugadores activos
-    { id: 435150, name: "Divinity: Original Sin 2", base: 12000 },
-    { id: 203160, name: "Tomb Raider (2013)", base: 2500 },
-    { id: 391220, name: "Rise of the Tomb Raider", base: 2000 },
-    { id: 750920, name: "Shadow of the Tomb Raider", base: 2200 },
+    { id: 681280, name: "Descenders", base: 1500 },
+    { id: 1056530, name: "Farming Simulator 22", base: 18000 },
+    { id: 313160, name: "Farming Simulator 15", base: 800 },
+    { id: 252950, name: "Rocket League", base: 15000 },
+    { id: 435150, name: "Divinity: Original Sin 2", base: 8000 },
+    { id: 203160, name: "Tomb Raider (2013)", base: 2000 },
+    { id: 391220, name: "Rise of the Tomb Raider", base: 1500 },
+    { id: 750920, name: "Shadow of the Tomb Raider", base: 1500 },
     { id: 241930, name: "Middle-earth: Shadow of Mordor", base: 1500 },
-    { id: 356190, name: "Middle-earth: Shadow of War", base: 2500 },
-    { id: 219990, name: "Grim Dawn", base: 6000 },
-    { id: 238960, name: "Path of Exile", base: 85000 },
+    { id: 356190, name: "Middle-earth: Shadow of War", base: 2000 },
+    { id: 219990, name: "Grim Dawn", base: 4000 },
+    { id: 238960, name: "Path of Exile", base: 45000 },
     
     // ANIME, LUCHA Y JRPGs
     { id: 310950, name: "Street Fighter V", base: 1500 },
-    { id: 976590, name: "Guilty Gear -Strive-", base: 4500 },
+    { id: 976590, name: "Guilty Gear -Strive-", base: 4000 },
     { id: 1089090, name: "ONE PIECE Pirate Warriors 4", base: 1000 },
-    { id: 851850, name: "DRAGON BALL Z: KAKAROT", base: 3500 },
-    { id: 1229230, name: "DRAGON BALL: Sparking! ZERO", base: 45000 }, // Muy relevante y reciente
-    { id: 389730, name: "TEKKEN 7", base: 3500 },
-    { id: 2222890, name: "Granblue Fantasy: Relink", base: 8000 },
-    { id: 552990, name: "World of Warships", base: 12000 },
-    { id: 1059530, name: "Kards", base: 1200 },
-    { id: 2085310, name: "MARVEL SNAP", base: 8000 },
+    { id: 851850, name: "DRAGON BALL Z: KAKAROT", base: 3000 },
+    { id: 1229230, name: "DRAGON BALL: Sparking! ZERO", base: 35000 },
+    { id: 389730, name: "TEKKEN 7", base: 3000 },
+    { id: 2222890, name: "Granblue Fantasy: Relink", base: 5000 },
+    { id: 552990, name: "World of Warships", base: 8000 },
+    { id: 1059530, name: "Kards", base: 1000 },
+    { id: 1997040, name: "MARVEL SNAP", base: 6000 },
+
     
     // TERROR Y SUPERVIVENCIA
     { id: 418370, name: "Outlast", base: 1500 },
-    { id: 1304930, name: "The Outlast Trials", base: 6000 },
-    { id: 242760, name: "The Forest", base: 12000 },
+    { id: 1304930, name: "The Outlast Trials", base: 4000 },
+    { id: 242760, name: "The Forest", base: 8000 },
     { id: 493520, name: "GTFO", base: 2000 },
     { id: 230270, name: "Alien: Isolation", base: 1500 },
-    
-    // MMOs Y JUEGOS COMO SERVICIO (LIVE SERVICE)
-    { id: 1063730, name: "New World", base: 15000 },
-    { id: 1599340, name: "Lost Ark", base: 45000 },
-    { id: 582660, name: "Black Desert", base: 20000 },
-    { id: 306130, name: "The Elder Scrolls Online", base: 25000 },
-    { id: 1151340, name: "Fallout 76", base: 35000 },
-    { id: 39210, name: "FINAL FANTASY XIV Online", base: 35000 },
-    { id: 386360, name: "SMITE", base: 12000 },
-    { id: 315460, name: "Brawlhalla", base: 18000 },
-    { id: 304390, name: "For Honor", base: 4000 },
-    { id: 1449850, name: "Yu-Gi-Oh! Master Duel", base: 25000 },
 
-    // SUPERVIVENCIA, CRAFTEO Y MUNDO ABIERTO
-    { id: 526870, name: "Satisfactory", base: 40000 },
-    { id: 244850, name: "Space Engineers", base: 6000 },
-    { id: 387990, name: "Scrap Mechanic", base: 5000 },
-    { id: 457140, name: "Oxygen Not Included", base: 12000 },
-    { id: 1377380, name: "V Rising", base: 8000 },
-    { id: 962130, name: "Grounded", base: 6000 },
-    { id: 1003590, name: "State of Decay 2", base: 4500 },
-    { id: 440900, name: "Conan Exiles", base: 10000 },
-    { id: 815370, name: "Green Hell", base: 3500 },
-    { id: 361420, name: "ASTRONEER", base: 4000 },
-    { id: 1284190, name: "The Planet Crafter", base: 4500 },
-
-    // COZY GAMES Y SIMULADORES DE TRABAJO
-    { id: 613100, name: "House Flipper", base: 4000 },
-    { id: 1290000, name: "PowerWash Simulator", base: 3500 },
-    { id: 621060, name: "PC Building Simulator", base: 1500 },
-    { id: 1131750, name: "Unpacking", base: 1200 },
-    { id: 1158160, name: "Coral Island", base: 3000 },
-    { id: 1084600, name: "My Time at Sandrock", base: 4500 },
-    { id: 1401590, name: "Disney Dreamlight Valley", base: 5000 },
-    { id: 1190000, name: "Car Mechanic Simulator 2021", base: 3500 },
-    { id: 535930, name: "Two Point Hospital", base: 1500 },
-    { id: 1649080, name: "Two Point Campus", base: 1000 },
-
-    // ESTRATEGIA Y CONSTRUCCIÓN DE CIUDADES (RTS/CITY BUILDERS)
-    { id: 916440, name: "Anno 1800", base: 8000 },
-    { id: 813780, name: "Age of Empires II: Definitive Edition", base: 20000 },
-    { id: 1466860, name: "Age of Empires IV", base: 12000 },
-    { id: 231430, name: "Company of Heroes 2", base: 4000 },
-    { id: 1677280, name: "Company of Heroes 3", base: 3000 },
-    { id: 466560, name: "Northgard", base: 3500 },
-    { id: 492720, name: "Tropico 6", base: 2500 },
-    { id: 233450, name: "Prison Architect", base: 2000 },
-
-    // INDIES FAMOSOS Y METROIDVANIAS
-    { id: 261570, name: "Ori and the Blind Forest", base: 1500 },
-    { id: 1057090, name: "Ori and the Will of the Wisps", base: 2500 },
-    { id: 250760, name: "Shovel Knight: Treasure Trove", base: 800 },
-    { id: 460950, name: "Katana ZERO", base: 1000 },
-    { id: 632360, name: "Risk of Rain 2", base: 15000 },
-    { id: 1337520, name: "Risk of Rain Returns", base: 2000 },
-    { id: 418530, name: "Spelunky 2", base: 1200 },
-    { id: 653530, name: "Return of the Obra Dinn", base: 500 },
-    { id: 204360, name: "INSIDE", base: 1000 },
-    { id: 48000, name: "LIMBO", base: 800 },
-    { id: 424840, name: "Little Nightmares", base: 1500 },
-    { id: 860510, name: "Little Nightmares II", base: 2000 },
-    { id: 1533420, name: "Neon White", base: 800 },
-
-    // ACTION RPG, HACK & SLASH Y JUEGOS JAPONESES
-    { id: 524220, name: "NieR:Automata", base: 4500 },
-    { id: 1113560, name: "NieR Replicant", base: 1000 },
-    { id: 638970, name: "Yakuza 0", base: 2500 },
-    { id: 1235140, name: "Yakuza: Like a Dragon", base: 3000 },
-    { id: 2070850, name: "Like a Dragon: Infinite Wealth", base: 5000 },
-    { id: 601150, name: "Devil May Cry 5", base: 4000 },
-    { id: 460790, name: "Bayonetta", base: 800 },
-    { id: 1462040, name: "FINAL FANTASY VII REMAKE INTERGRADE", base: 3500 },
-    { id: 637650, name: "FINAL FANTASY XV WINDOWS EDITION", base: 2000 },
-    { id: 740130, name: "Tales of Arise", base: 2000 },
-    { id: 367500, name: "Dragon's Dogma: Dark Arisen", base: 2500 },
-    { id: 2054970, name: "Dragon's Dogma 2", base: 15000 },
-
-    // SHOOTERS (TÁCTICOS, FRENÉTICOS Y CLÁSICOS)
-    { id: 107410, name: "Arma 3", base: 15000 },
-    { id: 581320, name: "Insurgency: Sandstorm", base: 4000 },
-    { id: 312660, name: "Sniper Elite 4", base: 1500 },
-    { id: 1058020, name: "Sniper Elite 5", base: 2500 },
-    { id: 976730, name: "Halo: The Master Chief Collection", base: 8000 },
-    { id: 1240440, name: "Halo Infinite", base: 12000 },
-    { id: 1229490, name: "ULTRAKILL", base: 6000 },
-    { id: 519860, name: "DUSK", base: 500 },
-
-    // TERROR Y SUSTOS EN GRUPO
-    { id: 883710, name: "Resident Evil 2", base: 4000 },
-    { id: 952060, name: "Resident Evil 3", base: 2000 },
-    { id: 57300, name: "Amnesia: The Dark Descent", base: 800 },
-    { id: 1944430, name: "Amnesia: The Bunker", base: 600 },
-    { id: 282140, name: "SOMA", base: 500 },
-    { id: 312840, name: "Five Nights at Freddy's", base: 1200 },
-    { id: 747660, name: "Five Nights at Freddy's: Security Breach", base: 2500 },
-    { id: 1274570, name: "DEVOUR", base: 2000 },
-    { id: 1922110, name: "Demonologist", base: 1500 },
-    { id: 967050, name: "Pacify", base: 1000 },
-
-    // PARTY GAMES Y MULTIJUGADOR CAÓTICO
-    { id: 880940, name: "Pummel Party", base: 2500 },
-    { id: 431240, name: "Golf With Your Friends", base: 3500 },
-    { id: 571740, name: "Golf It!", base: 1500 },
-    { id: 674940, name: "Stick Fight: The Game", base: 2000 },
-    { id: 285900, name: "Gang Beasts", base: 3000 },
-    { id: 477160, name: "Human: Fall Flat", base: 4500 },
-    { id: 728880, name: "Overcooked! 2", base: 4000 },
-    { id: 1599600, name: "PlateUp!", base: 3500 },
-    { id: 323850, name: "Move or Die", base: 800 },
-    { id: 312530, name: "Duck Game", base: 600 },
-    { id: 434170, name: "The Jackbox Party Pack 3", base: 1200 },
-    { id: 341800, name: "Keep Talking and Nobody Explodes", base: 1000 },
-    { id: 286160, name: "Tabletop Simulator", base: 6000 },
-
-    // PUZZLES RELAJANTES Y MÁS CARTAS
-    { id: 1284410, name: "GWENT: The Witcher Card Game", base: 1500 },
-    { id: 368260, name: "Marvel's Midnight Suns", base: 1500 },
-    { id: 210970, name: "The Witness", base: 400 },
-    { id: 257510, name: "The Talos Principle", base: 500 },
-    { id: 835960, name: "The Talos Principle 2", base: 1200 },
-    { id: 736260, name: "Baba Is You", base: 800 },
-    { id: 1455840, name: "Dorfromantik", base: 1500 },
-    { id: 1127500, name: "Mini Motorways", base: 1000 },
-    { id: 287980, name: "Mini Metro", base: 600 },
-
-    // BRAWLERS Y BEAT'EM UPS
-    { id: 1361510, name: "TMNT: Shredder's Revenge", base: 1500 },
-    { id: 985890, name: "Streets of Rage 4", base: 800 },
-    { id: 2138710, name: "Sifu", base: 1800 },
-    { id: 976310, name: "Mortal Kombat 11", base: 4000 },
-    { id: 627270, name: "Injustice 2", base: 1200 },
+    // MMOs Y JUEGOS COMO SERVICIO
+    { id: 1063730, name: "New World", base: 10000 },
+    { id: 1599340, name: "Lost Ark", base: 25000 },
+    { id: 582660, name: "Black Desert", base: 12000 },
+    { id: 306130, name: "The Elder Scrolls Online", base: 15000 },
+    { id: 1151340, name: "Fallout 76", base: 8000 },
+    { id: 39210, name: "FINAL FANTASY XIV Online", base: 25000 },
+    { id: 386360, name: "SMITE", base: 8000 },
+    { id: 1237950, name: "Brawlhalla", base: 10000 },
+    { id: 304390, name: "For Honor", base: 3000 },
+    { id: 1449850, name: "Yu-Gi-Oh! Master Duel", base: 15000 },
 
     // ÉXITOS RECIENTES Y TITANES ACTUALES
-    { id: 2358720, name: "Black Myth: Wukong", base: 180000 },
-    { id: 2356500, name: "Overwatch 2", base: 45000 },
-    { id: 2344520, name: "Diablo IV", base: 35000 },
-    { id: 1363080, name: "Manor Lords", base: 25000 },
-    { id: 1145350, name: "Hades II", base: 30000 },
-    { id: 2073850, name: "THE FINALS", base: 20000 },
-    { id: 1203220, name: "NARAKA: BLADEPOINT", base: 120000 },
-    { id: 1693980, name: "Dead Space (Remake)", base: 8000 },
-    { id: 1627720, name: "Lies of P", base: 12000 },
-    { id: 1501750, name: "Lords of the Fallen", base: 5000 },
-    { id: 1888160, name: "ARMORED CORE VI FIRES OF RUBICON", base: 10000 },
+    { id: 2358720, name: "Black Myth: Wukong", base: 90000 },
+    { id: 2357570, name: "Overwatch", base: 35000 },
+    { id: 2344520, name: "Diablo IV", base: 25000 },
+    { id: 1363080, name: "Manor Lords", base: 15000 },
+    { id: 1145350, name: "Hades II", base: 20000 },
+    { id: 2073850, name: "THE FINALS", base: 15000 },
+    { id: 1203220, name: "NARAKA: BLADEPOINT", base: 25000 },
+    { id: 1888160, name: "ARMORED CORE VI FIRES OF RUBICON", base: 8000 },
+    { id: 1693980, name: "Dead Space (Remake)", base: 5000 },
+    { id: 1627720, name: "Lies of P", base: 6000 },
 
-    // EXCLUSIVOS DE PLAYSTATION AHORA EN PC
-    { id: 2215430, name: "Ghost of Tsushima DIRECTOR'S CUT", base: 30000 },
-    { id: 1817190, name: "Marvel's Spider-Man: Miles Morales", base: 8000 },
-    { id: 2420110, name: "Horizon Forbidden West Complete Edition", base: 15000 },
-    { id: 1659420, name: "UNCHARTED: Legacy of Thieves Collection", base: 5000 },
-    { id: 1895880, name: "Ratchet & Clank: Rift Apart", base: 4000 },
-    { id: 1649240, name: "Returnal", base: 2500 },
+    // EXCLUSIVOS PLAYSTATION EN PC
+    { id: 2215430, name: "Ghost of Tsushima DIRECTOR'S CUT", base: 15000 },
+    { id: 1817190, name: "Marvel's Spider-Man: Miles Morales", base: 6000 },
+    { id: 2767030, name: "Marvel Rivals", base: 6000 },
+    { id: 2420110, name: "Horizon Forbidden West Complete Edition", base: 8000 },
+    { id: 1659420, name: "UNCHARTED: Legacy of Thieves Collection", base: 4000 },
+    { id: 1895880, name: "Ratchet & Clank: Rift Apart", base: 3000 },
+    { id: 1649240, name: "Returnal", base: 2000 },
     { id: 1599660, name: "Sackboy: A Big Adventure", base: 1000 },
+    { id: 221100, name: "DayZ", base: 1000 },
+    { id: 3932890, name: "Escape from Tarkov", base: 1000 },
+    { id: 2799860, name: "INAZUMA ELEVEN: Victory Road", base: 1000 },
 
     // CO-OP SHOOTERS Y HORDAS
     { id: 218620, name: "PAYDAY 2", base: 25000 },
@@ -385,6 +293,7 @@ const gameCatalog = [
     // CONDUCCIÓN, VUELO Y SIMULACIÓN PURA
     { id: 1551360, name: "Forza Horizon 5", base: 20000 },
     { id: 1293830, name: "Forza Horizon 4", base: 15000 },
+    { id: 2483190, name: "Forza Horizon 6", base: 15000 },
     { id: 270880, name: "American Truck Simulator", base: 18000 },
     { id: 1465360, name: "SnowRunner", base: 8000 },
     { id: 675010, name: "MudRunner", base: 2000 },
@@ -402,6 +311,8 @@ const gameCatalog = [
     { id: 17450, name: "Dragon Age: Origins - Ultimate Edition", base: 3500 },
     { id: 1222650, name: "Dragon Age: Inquisition", base: 4500 },
     { id: 379430, name: "Kingdom Come: Deliverance", base: 10000 },
+    { id: 1771300, name: "Kingdom Come: Deliverance II", base: 10000 },
+    { id: 701160, name: "Kingdom Two Crowns", base: 10000 },
     { id: 719040, name: "Wasteland 3", base: 2500 },
     { id: 291650, name: "Pillars of Eternity", base: 2000 },
     { id: 20920, name: "The Witcher 2: Assassins of Kings", base: 1500 },
@@ -418,6 +329,9 @@ const gameCatalog = [
     { id: 1097840, name: "Gears 5", base: 2500 },
     { id: 513710, name: "SCUM", base: 8000 },
     { id: 794260, name: "Outward Definitive Edition", base: 2000 },
+    { id: 2054970, name: "Dragon's Dogma 2", base: 2000 },
+    { id: 1903340, name: "Clair Obscur: Expedition 33", base: 2000 },
+
 
     // CAZA, PESCA Y COZY GAMES
     { id: 518790, name: "theHunter: Call of the Wild", base: 12000 },
@@ -447,6 +361,9 @@ const gameCatalog = [
     { id: 1774580, name: "STAR WARS Jedi: Survivor", base: 6000 },
     { id: 1172380, name: "STAR WARS Jedi: Fallen Order", base: 4500 },
     { id: 920210, name: "LEGO Star Wars: The Skywalker Saga", base: 5000 },
+    { id: 1286830, name: "STAR WARS™: The Old Republic™", base: 5000 },
+    { id: 1237950, name: "STAR WARS™ Battlefront™ II", base: 5000 },
+
 
     // INDIES DE DESTRUCCIÓN Y PLATAFORMAS 3D
     { id: 1167630, name: "Teardown", base: 5000 },
@@ -498,6 +415,10 @@ const gameCatalog = [
     { id: 2221490, name: "Tom Clancy's The Division 2", base: 3500 },
     { id: 243470, name: "Watch_Dogs", base: 1000 },
     { id: 447040, name: "Watch_Dogs 2", base: 2000 },
+    { id: 3405690, name: "EA SPORTS FC™ 26", base: 2000 },
+    { id: 39210, name: "FINAL FANTASY XIV Online", base: 2000 },
+    { id: 2183900, name: "Warhammer 40,000: Space Marine 2", base: 2000 },
+
 
     // INDIES IMPRESCINDIBLES Y PREMIADOS
     { id: 1332010, name: "Stray", base: 4500 },
@@ -507,7 +428,7 @@ const gameCatalog = [
     { id: 383870, name: "Firewatch", base: 1500 },
     { id: 501300, name: "What Remains of Edith Finch", base: 1200 },
     { id: 1703340, name: "The Stanley Parable: Ultra Deluxe", base: 1000 },
-    { id: 311690, name: "Enter the Gungeon", base: 2500 },
+    { id: 311690, name: "Enter the Gungeon", base: 1200 },
     { id: 881100, name: "Noita", base: 3000 },
     { id: 1282730, name: "Loop Hero", base: 1500 },
     { id: 972660, name: "Spiritfarer", base: 1800 },
@@ -516,6 +437,8 @@ const gameCatalog = [
     { id: 239030, name: "Papers, Please", base: 1500 },
     { id: 219150, name: "Hotline Miami", base: 1200 },
     { id: 274170, name: "Hotline Miami 2: Wrong Number", base: 1000 },
+    { id: 1128810, name: "RISK: Global Domination", base: 1000 },
+    { id: 632360, name: "Risk of Rain 2", base: 1000 },
 
     // ESTRATEGIA, TÁCTICOS Y SIMULACIÓN
     { id: 268500, name: "XCOM 2", base: 5000 },
@@ -540,9 +463,8 @@ const gameCatalog = [
     { id: 203140, name: "Hitman: Absolution", base: 800 },
     { id: 63380, name: "Sniper Elite V2", base: 400 },
     { id: 238090, name: "Sniper Elite 3", base: 600 },
-    { id: 1237950, name: "STAR WARS Battlefront II", base: 6000 },
     { id: 1222730, name: "STAR WARS: Squadrons", base: 800 },
-
+    { id: 3405340, name: "Megabonk", base: 800 },
     // TERROR Y SUPERVIVENCIA OSCURA
     { id: 414340, name: "Hellblade: Senua's Sacrifice", base: 1500 },
     { id: 2461850, name: "Senua's Saga: Hellblade II", base: 2000 },
@@ -556,6 +478,7 @@ const gameCatalog = [
     { id: 480490, name: "Prey", base: 1500 },
     { id: 614570, name: "Dishonored: Death of the Outsider", base: 800 },
 
+
     // JRPGs Y JUEGOS CON ENFOQUE NARRATIVO
     { id: 1244090, name: "Sea of Stars", base: 1500 },
     { id: 921570, name: "OCTOPATH TRAVELER", base: 1200 },
@@ -566,7 +489,9 @@ const gameCatalog = [
     { id: 260230, name: "Valiant Hearts: The Great War", base: 500 },
     { id: 256290, name: "Child of Light", base: 400 },
     { id: 213670, name: "South Park: The Stick of Truth", base: 1500 },
-    { id: 485980, name: "South Park: The Fractured But Whole", base: 1200 },
+    { id: 488790, name: "South Park: The Fractured But Whole", base: 1200 },
+    { id: 1214650, name: "SOUTH PARK: SNOW DAY!", base: 1200 },
+    { id: 3241660, name: "R.E.P.O.", base: 1200 },
 
     // NOSTALGIA Y ARCADE
     { id: 322170, name: "Geometry Dash", base: 25000 },
@@ -579,7 +504,9 @@ const gameCatalog = [
     { id: 26800, name: "Braid", base: 200 },
     { id: 307780, name: "Mortal Kombat X", base: 1800 },
     { id: 200710, name: "Torchlight II", base: 1200 },
-    { id: 475150, name: "Titan Quest Anniversary Edition", base: 1500 }
+    { id: 601150, name: "Devil May Cry 5", base: 1200 },
+    { id: 475150, name: "Titan Quest Anniversary Edition", base: 1500 },
+    { id: 1922560, name: "Plants vs. Zombies™ Garden Warfare 2: Deluxe Edition", base: 1500 },
 
     
 
@@ -611,49 +538,59 @@ const showLoader = (side) => document.getElementById(`loader-${side}`).classList
 const hideLoader = (side) => document.getElementById(`loader-${side}`).classList.add('hidden');
 
 
+// OBTENCIÓN DE DATOS CON SISTEMA MULTI-PROXY ANTI-BLOQUEOS
 async function fetchGameData(gameBase) {
-    // 1. Añadimos un timestamp para "engañar" al proxy y evitar que nos devuelva caché antigua
     const timestamp = Date.now();
     const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${gameBase.id}&t=${timestamp}`;
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(steamApiUrl)}`;
+    
+    // 1. ROTACIÓN DE PROXIES: Si uno nos bloquea (Error 429), saltamos instantáneamente al siguiente.
+    const proxies = [
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(steamApiUrl)}`,
+        `https://corsproxy.io/?${encodeURIComponent(steamApiUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(steamApiUrl)}`
+    ];
 
-    let players = gameBase.base; // Asignamos el respaldo por defecto
+    let players = gameBase.base; 
+    let fetchSuccess = false;
 
-    try {
-        // 2. Aumentamos el timeout a 4000ms (4 segundos). 
-        // Como usas precarga en segundo plano, la red tiene tiempo para respirar sin penalizar la UI del usuario.
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 4000);
+    // 2. Bucle de rescate: Intentamos cada proxy uno por uno
+    for (const proxyUrl of proxies) {
+        try {
+            const controller = new AbortController();
+            // 5 segundos de paciencia máxima por proxy
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-        const response = await fetch(proxyUrl, { signal: controller.signal });
-        clearTimeout(timeoutId); // Si llega a tiempo, cancelamos la bomba lógica
+            const response = await fetch(proxyUrl, { signal: controller.signal });
+            clearTimeout(timeoutId);
 
-        if (response.ok) {
-            const steamData = await response.json();
-            
-            // 3. Validación estricta: Comprobamos que el objeto exista y que player_count no sea 'undefined'
-            // Esto soluciona el bug de los juegos que tienen legítimamente 0 jugadores concurrentes.
-            if (steamData?.response && typeof steamData.response.player_count !== 'undefined') {
-                players = steamData.response.player_count; // Datos 100% reales
-            } else {
-                throw new Error("El JSON de Steam no tiene el formato esperado");
+            if (response.ok) {
+                const steamData = await response.json();
+                
+                // Validación estricta
+                if (steamData?.response && typeof steamData.response.player_count !== 'undefined') {
+                    players = steamData.response.player_count; // DATO 100% REAL DE STEAMDB
+                    fetchSuccess = true;
+                    break; // ¡Tuvimos éxito! Rompemos el bucle y dejamos de buscar proxies
+                }
             }
-        } else {
-            throw new Error(`HTTP Error Proxy: ${response.status}`);
+        } catch (error) {
+            // El proxy falló, el bucle ignora el error y pasa al siguiente proxy de la lista automáticamente.
+            console.warn(`[Aviso] Proxy bloqueado para ${gameBase.name}, cambiando a proxy de respaldo...`);
         }
-    } catch (error) {
-        console.warn(`[Modo Fallback activado] Fallo al obtener datos reales de ${gameBase.name}: ${error.message}`);
-        
-        // Solo aplicamos la variación matemática si falló el fetch real
+    }
+
+    // 3. Si por un milagro TODOS los proxies fallan o Steam se cae, usamos los datos base
+    if (!fetchSuccess) {
+        console.error(`⚠️ [ALERTA] Todos los proxies fallaron para ${gameBase.name}. Usando fallback.`);
         players = Math.floor(players * (0.9 + Math.random() * 0.2));
     }
 
     const imageUrl = getSteamImageUrl(gameBase.id);
 
-    // Precarga de imagen (Lógica intacta, funciona bien)
+    // Precarga de imagen segura
     await new Promise((resolve) => {
         const img = new Image();
-        const imgTimeout = setTimeout(resolve, 1000);
+        const imgTimeout = setTimeout(resolve, 1500); // Forzamos carga si tarda más de 1.5s
         
         img.onload = () => { clearTimeout(imgTimeout); resolve(); };
         img.onerror = () => { clearTimeout(imgTimeout); resolve(); };
@@ -691,20 +628,12 @@ async function fillQueue() {
     while (gameQueue.length < MAX_QUEUE_SIZE) {
         const nextBase = getRandomGameBase();
         
-        try {
-            // AWAIT aquí asegura que la petición termine ANTES de lanzar la siguiente (Secuencial)
-            const data = await fetchGameData(nextBase);
-            gameQueue.push(data);
-            
-            // Le damos al proxy un "respiro" de 400ms entre cada petición
-            // Esto evita que AllOrigins nos bloquee por hacer Spam (Error 429)
-            await new Promise(resolve => setTimeout(resolve, 400));
-            
-        } catch (error) {
-            console.error("Error cargando carta en cola:", error);
-            // Si falla excepcionalmente, hacemos una pausa más larga antes de reintentar
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
+        // El fetch ahora maneja sus propios problemas. Esperamos pacientemente.
+        const data = await fetchGameData(nextBase);
+        gameQueue.push(data);
+        
+        // Pausa vital de 600ms entre juegos para evitar que los proxies nos detecten como un ataque DDoS
+        await new Promise(resolve => setTimeout(resolve, 600));
     }
 
     isFillingQueue = false;
