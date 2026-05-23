@@ -73,7 +73,6 @@ const gameCatalog = [
     { id: 753640, name: "Outer Wilds", base: 800 },
     { id: 632470, name: "Disco Elysium", base: 600 },
     { id: 1422450, name: "Deadlock", base: 2500 },   // Ajustado (es multijugador)
-    { id: 3527290, name: "PEAK", base: 1800 },
 
     // COOPERATIVOS / VIRALES
 { id: 1966720, name: "Lethal Company", base: 4700 },
@@ -237,7 +236,7 @@ const gameCatalog = [
 
     
     // TERROR Y SUPERVIVENCIA
-    { id: 418370, name: "Outlast", base: 180 },
+    { id: 238320, name: "Outlast", base: 400 },
     { id: 1304930, name: "The Outlast Trials", base: 3600 },
     { id: 242760, name: "The Forest", base: 3200 },
     { id: 493520, name: "GTFO", base: 650 },
@@ -402,6 +401,7 @@ const gameCatalog = [
     { id: 3405690, name: "EA SPORTS FC™ 26", base: 4500 },
     { id: 39210, name: "FINAL FANTASY XIV Online", base: 28000 },
     { id: 2183900, name: "Warhammer 40,000: Space Marine 2", base: 8500 },
+    { id: 2495100, name: "Hello Kitty Island Adventure", base: 800 },
 
 
     // INDIES IMPRESCINDIBLES Y PREMIADOS
