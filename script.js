@@ -230,7 +230,7 @@ const gameCatalog = [
     { id: 1089090, name: "ONE PIECE Pirate Warriors 4", base: 450 },
     { id: 851850, name: "DRAGON BALL Z: KAKAROT", base: 850 },
     { id: 389730, name: "TEKKEN 7", base: 650 },
-    { id: 2222890, name: "Granblue Fantasy: Relink", base: 1600 },
+    { id: 881020, name: "Granblue Fantasy: Relink", base: 1600 },
     { id: 552990, name: "World of Warships", base: 24500 },
     { id: 544810, name: "Kards", base: 120 },
     { id: 1997040, name: "MARVEL SNAP", base: 950 },
@@ -496,12 +496,12 @@ const gameCatalog = [
 
 // Variables de estado
 let score = 0;
+let playedGames = new Set();
 let highScore = 0;
 let currentGameLeft = null;
 let currentGameRight = null;
 let isAnimating = false;
 let isFirstRound = true;
-let playedGames = new Set();
 
 // SISTEMA DE PRECARGA OPTIMIZADA
 let gameQueue = [];
@@ -594,86 +594,78 @@ async function fetchGameData(gameBase) {
     };
 }
 
-// MATCHMAKING AVANZADO: Basado en Distancia Logarítmica (K-Nearest Neighbors)
-// MATCHMAKING AVANZADO: Basado en Distancia Logarítmica (K-Nearest Neighbors)
+
+// MATCHMAKING AVANZADO: Basado en Distancia Logarítmica Constante y Rey de la Colina
 function getRandomGameBase() {
-    // 1. Descartar los juegos que ya están en pantalla o en la cola
+    // 1. Filtrar los juegos que ya están activos O que ya han salido en esta sesión
     const activeIds = [
         currentGameLeft?.id, 
         currentGameRight?.id, 
         ...gameQueue.map(g => g.id)
     ].filter(id => id !== undefined);
 
-    // NUEVO: Filtramos los activos Y los que ya hemos jugado en esta sesión
     let availableGames = gameCatalog.filter(g => 
         !activeIds.includes(g.id) && !playedGames.has(g.id)
     );
     
-    // NUEVO: Si nos quedamos sin juegos (el jugador ha visto todo el catálogo),
-    // limpiamos el historial para que pueda seguir jugando sin que pete la web.
+    // Failsafe: Si el usuario es tan bueno que agota TODO el catálogo (juega más de 180 cartas),
+    // limpiamos el historial de jugados para que el juego no se quede colgado.
     if (availableGames.length === 0) {
-        console.log("Catálogo agotado. Reiniciando historial de cartas...");
+        console.log("[Matchmaking] Catálogo agotado. Reiniciando historial para evitar bloqueos...");
         playedGames.clear();
+        // Protegemos los que están en pantalla ahora mismo
+        activeIds.forEach(id => playedGames.add(id)); 
         availableGames = gameCatalog.filter(g => !activeIds.includes(g.id));
     }
 
-    // 2. Identificar la carta de referencia para buscarle un rival
+    // 2. EL CAMBIO CLAVE: Siempre apuntar al Rey de la Colina (currentGameLeft)
+    // Así la recámara de precarga siempre se preparará con balas a la medida de tu carta actual.
     let referenceGame = null;
-    if (gameQueue.length > 0) {
-        referenceGame = gameQueue[gameQueue.length - 1];
+    if (currentGameLeft) {
+        referenceGame = currentGameLeft; 
+    } else if (gameQueue.length > 0) {
+        // Solo usamos la cola como referencia en el primerísimo instante antes de que empiece la partida
+        referenceGame = gameQueue[gameQueue.length - 1]; 
     } else if (currentGameRight) {
         referenceGame = currentGameRight;
-    } else if (currentGameLeft) {
-        referenceGame = currentGameLeft;
     }
 
     let chosenGame;
 
     if (referenceGame) {
-        // Obtenemos los jugadores reales (o el base si la API falló)
+        // Usamos el número de jugadores de la API (o el base si falló) para no romper las matemáticas
         const targetPlayers = (referenceGame.players && referenceGame.players > 0) 
             ? referenceGame.players 
             : (gameCatalog.find(g => g.id === referenceGame.id)?.base || 1000);
 
-        // Calculamos el logaritmo del objetivo
         const logTarget = Math.log10(Math.max(targetPlayers, 1));
 
-        // 3. ORDENAR TODOS LOS JUEGOS POR SIMILITUD (Distancia Logarítmica)
+        // 3. ORDENACIÓN DINÁMICA POR SIMILITUD LOGARÍTMICA
         availableGames.sort((a, b) => {
             const logA = Math.log10(Math.max(a.base, 1));
             const logB = Math.log10(Math.max(b.base, 1));
             
-            const distanceA = Math.abs(logTarget - logA);
-            const distanceB = Math.abs(logTarget - logB);
-            
-            return distanceA - distanceB; 
+            // Restamos distancias para ordenar de menor diferencia a mayor diferencia
+            return Math.abs(logTarget - logA) - Math.abs(logTarget - logB);
         });
 
-        // 4. SISTEMA DE BUCKETS DINÁMICOS (The Matchmaker)
-        const randomRoll = Math.random();
-        let selectedPool;
+        // 4. SISTEMA DE "DUDA EXTREMA" ESCALABLE
+        // Al coger los índices del 0 al X, siempre cogerá lo más parecido.
+        // Si no quedan de 1200, el índice 0 pasará a ser automáticamente de 1400 o 900.
+        // 75% del tiempo coge de la "Élite" (Top 4). 25% coge del Top 10 para oxigenar los números.
+        const poolSize = Math.random() < 0.75 ? 4 : 10;
+        
+        const maxIndex = Math.min(poolSize, availableGames.length);
+        const selectedPool = availableGames.slice(0, maxIndex);
 
-        if (randomRoll < 0.75) {
-            selectedPool = availableGames.slice(0, 6);
-        } else if (randomRoll < 0.95) {
-            selectedPool = availableGames.slice(6, 15);
-        } else {
-            selectedPool = availableGames.slice(15, 30);
-        }
-
-        // Failsafe por si el pool es mayor a los juegos restantes
-        if (selectedPool.length === 0) {
-            selectedPool = availableGames.slice(0, 3);
-        }
-
-        // 5. Devolvemos un juego aleatorio dentro del rango
+        // Escogemos a su rival entre los mejores candidatos disponibles
         chosenGame = selectedPool[Math.floor(Math.random() * selectedPool.length)];
     } else {
-        // Si no hay juego de referencia, es aleatorio
+        // Si no hay ninguna referencia en absoluto, se elige 1 al azar (Round 1 real)
         chosenGame = availableGames[Math.floor(Math.random() * availableGames.length)];
     }
 
-    // NUEVO: Marcamos este juego como usado para que no vuelva a salir
+    // 5. REGISTRAMOS EL JUEGO EN LA MEMORIA PARA QUE NO VUELVA A SALIR
     playedGames.add(chosenGame.id);
 
     return chosenGame;
